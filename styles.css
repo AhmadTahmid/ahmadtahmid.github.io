@@ -6,24 +6,21 @@ body {
   color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
   text-align: center;
-}
-
-.container {
-  padding: 20px;
+  padding-top: 50px; /* This moves everything up */
 }
 
 h1 {
-  font-size: 3em;
-  margin-bottom: 0.5em;
+  font-size: 4em; /* Increased font size */
+  margin-bottom: 0.2em;
 }
 
 p {
   font-size: 1.2em;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 }
 
 nav ul {
@@ -32,11 +29,12 @@ nav ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1em;
+  gap: 2em; /* Increased spacing between nav items */
 }
 
 nav ul li {
-  font-size: 1em;
+  font-size: 1.1em;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Added text shadow */
 }
 
 nav ul li a {
@@ -51,13 +49,14 @@ nav ul li a:hover {
 footer {
   position: absolute;
   bottom: 20px;
-  width: 100%;
-  text-align: center;
+  left: 20px; /* Moved to the left */
+  width: calc(100% - 40px);
+  text-align: left;
 }
 
 blockquote {
   font-style: italic;
-  font-size: 1em;
+  font-size: 1.3em; /* Increased font size */
   margin: 0;
 }
 
@@ -66,4 +65,3 @@ blockquote span {
   margin-top: 0.5em;
   font-size: 0.8em;
 }
-
