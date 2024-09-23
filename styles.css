@@ -1,7 +1,9 @@
+/* style.css */
+
 body {
   margin: 0;
   padding: 0;
-  background: url('/assets/BetterClouds.gif') center center / 100% 100% no-repeat fixed;
+  background: url('/assets/BetterClouds.gif') center center / cover no-repeat fixed;
   font-family: 'Arial', sans-serif;
   color: #fff;
   display: flex;
@@ -12,37 +14,43 @@ body {
   text-align: center;
 }
 
+/* Container to center elements with transparent background */
 .container {
-  background-color: rgba(0, 0, 50, 0.7);
-  padding: 20px;
-  border-radius: 10px;
-  margin: 20px;
-  max-width: 80%;
+  background-color: rgba(0, 0, 50, 0.6);
+  padding: 30px 40px;
+  border-radius: 20px;
+  margin: 40px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Styling for header */
 h1 {
-  font-size: 3em;
+  font-size: 4em;
   margin-bottom: 0.5em;
 }
 
+/* Description text below the title */
 p {
-  font-size: 1.2em;
-  margin-bottom: 1em;
+  font-size: 1.5em;
+  margin-bottom: 1.5em;
 }
 
+/* Navigation menu */
 nav ul {
   list-style-type: none;
   padding: 0;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 1em;
+  gap: 2em;
 }
 
 nav ul li {
   font-size: 1.2em;
-  background-color: rgba(128, 128, 128, 0.7);
-  padding: 10px 20px;
+  background-color: rgba(0, 0, 50, 0.8);
+  padding: 15px 25px;
   border-radius: 10px;
 }
 
@@ -55,21 +63,26 @@ nav ul li a:hover {
   text-decoration: underline;
 }
 
+/* Footer quote */
 footer {
   width: 100%;
   text-align: center;
   padding: 20px;
   background-color: rgba(0, 0, 50, 0.7);
+  position: absolute;
+  bottom: 0;
 }
 
 blockquote {
   font-style: italic;
-  font-size: 1.2em;
+  font-size: 1.5em;
   margin: 0;
 }
 
 blockquote span {
   display: block;
   margin-top: 0.5em;
-  font-size: 0.8em;
+  font-size: 1em;
+  opacity: 0.7;
 }
+
