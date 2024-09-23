@@ -10,11 +10,11 @@ body {
   align-items: center;
   min-height: 100vh;
   text-align: center;
-  padding-top: 50px; /* This moves everything up */
+  padding-top: 50px; /* Keeps the title and subtitle aligned */
 }
 
 h1 {
-  font-size: 4em; /* Increased font size */
+  font-size: 4em;
   margin-bottom: 0.2em;
 }
 
@@ -23,22 +23,28 @@ p {
   margin-bottom: 2em;
 }
 
+/* Move the navigation links down a little */
+nav {
+  margin-top: 30px; /* This will add space between "Why not click a link?" and the navigation */
+}
+
 nav ul {
   list-style-type: none;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2em; /* Increased spacing between nav items */
+  gap: 2em; /* Spacing between the navigation items */
 }
 
 nav ul li {
   font-size: 1.1em;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Added text shadow */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Added text shadow */
+  color: #d3d3d3; /* Changed font color to light gray for navigation */
 }
 
 nav ul li a {
-  color: #fff;
+  color: #d3d3d3; /* Light gray color for the links */
   text-decoration: none;
 }
 
@@ -46,17 +52,19 @@ nav ul li a:hover {
   text-decoration: underline;
 }
 
+/* Footer and quote styling */
 footer {
   position: absolute;
   bottom: 20px;
-  left: 20px; /* Moved to the left */
-  width: calc(100% - 40px);
-  text-align: left;
+  left: 0;
+  width: 100%;
+  text-align: center; /* Center the footer */
 }
 
 blockquote {
   font-style: italic;
-  font-size: 1.3em; /* Increased font size */
+  font-size: 1.3em;
+  color: #d3d3d3; /* Light gray color for the quote */
   margin: 0;
 }
 
