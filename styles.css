@@ -1,64 +1,75 @@
-/* style.css */
 body {
   margin: 0;
   padding: 0;
-  background: url('assets/BetterClouds.gif') no-repeat center center fixed;
-  background-size: cover;
+  background: url('/assets/BetterClouds.gif') center center / cover no-repeat fixed;
   font-family: 'Arial', sans-serif;
   color: #fff;
   text-align: center;
-}
-.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
+
+.container {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+}
+
 h1 {
   font-size: 5em;
   margin-bottom: 0.5em;
 }
+
 p {
   font-size: 1.5em;
   margin-bottom: 2em;
 }
+
 nav ul {
   list-style-type: none;
   padding: 0;
   display: flex;
   gap: 2em;
 }
+
 nav ul li {
   display: inline-block;
   font-size: 1.5em;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(128, 128, 128, 0.7);
   padding: 10px 20px;
   border-radius: 10px;
 }
+
 nav ul li a {
   color: #fff;
   text-decoration: none;
 }
+
 nav ul li a:hover {
   text-decoration: underline;
 }
+
 footer {
   position: absolute;
   bottom: 20px;
   width: 100%;
   text-align: center;
 }
+
 blockquote {
   font-style: italic;
   font-size: 1.5em;
   margin: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(128, 128, 128, 0.7);
   padding: 10px 20px;
   border-radius: 10px;
 }
+
 blockquote span {
   display: block;
   margin-top: 0.5em;
-  font-size: 1em;
+  font-size: 0.8em;
 }
