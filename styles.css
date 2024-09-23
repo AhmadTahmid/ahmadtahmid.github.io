@@ -1,47 +1,51 @@
-/* style.css */
-
 body {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
+  margin: 0;
+  padding: 0;
+  background: url('assets/BetterClouds.gif') center center / cover no-repeat fixed;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  padding: 2rem;
 }
 
 h1 {
-  font-size: 5em;
+  font-size: 4rem;
   margin-bottom: 0.5em;
+  color: #000;
 }
 
 p {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   margin-bottom: 2em;
+  color: #333;
 }
 
 nav ul {
   list-style-type: none;
   padding: 0;
   display: flex;
-  gap: 2em;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 nav ul li {
-  display: inline-block;
-  font-size: 1.5em;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px 20px;
-  border-radius: 10px;
+  background-color: rgba(128, 128, 128, 0.7);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
 }
 
 nav ul li a {
   color: #fff;
   text-decoration: none;
+  font-size: 1.2rem;
 }
 
 nav ul li a:hover {
@@ -49,24 +53,21 @@ nav ul li a:hover {
 }
 
 footer {
-  position: absolute;
-  bottom: 20px;
+  background-color: rgba(128, 128, 128, 0.7);
+  padding: 1rem;
   width: 100%;
-  text-align: center;
+  box-sizing: border-box;
 }
 
 blockquote {
   font-style: italic;
-  font-size: 1.5em;
+  font-size: 1.2rem;
   margin: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px 20px;
-  border-radius: 10px;
 }
 
 blockquote span {
   display: block;
   margin-top: 0.5em;
-  font-size: 1em;
+  font-size: 1rem;
 }
 
