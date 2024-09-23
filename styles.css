@@ -14,12 +14,12 @@ body {
 }
 
 h1 {
-  font-size: 4em;
+  font-size: 5em;
   margin-bottom: 0.2em;
 }
 
 p {
-  font-size: 1.2em;
+  font-size: 1.4em;
   margin-bottom: 2em;
 }
 
@@ -41,12 +41,12 @@ nav ul {
 }
 
 nav ul li {
-  font-size: 1.1em;
+  font-size: 1.8em;
   text-shadow: 3px 3px 6px rgba(0,0,0,0.7); /* Increased text shadow */
 }
 
 nav ul li a {
-  color: #e0e0e0; /* Darker shade of white */
+  color: #d3d3d3; 
   text-decoration: none;
 }
 
@@ -64,9 +64,9 @@ footer {
 
 blockquote {
   font-style: italic;
-  font-size: 1.3em;
+  font-size: 1.4em;
   margin: 0;
-  color: #e0e0e0; /* Darker shade of white */
+  color: #d3d3d3; 
 }
 
 blockquote span {
