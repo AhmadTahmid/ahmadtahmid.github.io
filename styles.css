@@ -1,43 +1,46 @@
 body {
   margin: 0;
   padding: 0;
-  background: url('/assets/BetterClouds.gif') center center / cover no-repeat fixed;
+  background: url('/assets/BetterClouds.gif') center center / 100% 100% no-repeat fixed;
   font-family: 'Arial', sans-serif;
   color: #fff;
-  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  text-align: center;
 }
 
 .container {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 50, 0.7);
   padding: 20px;
   border-radius: 10px;
+  margin: 20px;
+  max-width: 80%;
 }
 
 h1 {
-  font-size: 5em;
+  font-size: 3em;
   margin-bottom: 0.5em;
 }
 
 p {
-  font-size: 1.5em;
-  margin-bottom: 2em;
+  font-size: 1.2em;
+  margin-bottom: 1em;
 }
 
 nav ul {
   list-style-type: none;
   padding: 0;
   display: flex;
-  gap: 2em;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
 }
 
 nav ul li {
-  display: inline-block;
-  font-size: 1.5em;
+  font-size: 1.2em;
   background-color: rgba(128, 128, 128, 0.7);
   padding: 10px 20px;
   border-radius: 10px;
@@ -53,19 +56,16 @@ nav ul li a:hover {
 }
 
 footer {
-  position: absolute;
-  bottom: 20px;
   width: 100%;
   text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 50, 0.7);
 }
 
 blockquote {
   font-style: italic;
-  font-size: 1.5em;
+  font-size: 1.2em;
   margin: 0;
-  background-color: rgba(128, 128, 128, 0.7);
-  padding: 10px 20px;
-  border-radius: 10px;
 }
 
 blockquote span {
