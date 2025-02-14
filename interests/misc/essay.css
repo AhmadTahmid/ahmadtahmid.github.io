@@ -1,0 +1,134 @@
+/* Essay specific styles */
+.essay-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Header styles */
+header {
+    margin-bottom: 60px;
+}
+
+/* Essay content */
+.essay-content {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    color: #000;
+}
+
+.essay-content h1 {
+    font-size: 2.5em;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+    color: #000;
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+.essay-body {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+/* Inspiration Items */
+.inspiration-item {
+    margin-bottom: 3em;
+    padding-bottom: 2em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.inspiration-item:last-child {
+    border-bottom: none;
+}
+
+.inspiration-item h2 {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.8em;
+    margin: 0 0 0.5em;
+    color: #000;
+}
+
+.inspiration-item a {
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.inspiration-item a:hover {
+    border-bottom-color: #000;
+}
+
+/* Animation for content appearance */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.inspiration-item:nth-child(1) { animation-delay: 0.1s; }
+.inspiration-item:nth-child(2) { animation-delay: 0.2s; }
+
+/* External link icon */
+a[target="_blank"]::after {
+    content: '↗';
+    display: inline-block;
+    margin-left: 4px;
+    font-size: 0.8em;
+    transition: transform 0.2s ease;
+}
+
+a[target="_blank"]:hover::after {
+    transform: translate(2px, -2px);
+}
+
+/* Update note animation */
+.update-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9em;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: right;
+    margin-top: 3em;
+    font-style: italic;
+    padding-right: 1em;
+    animation: fadeInOut 2s infinite;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .essay-container {
+        padding: 20px;
+    }
+
+    .essay-content {
+        padding: 30px 20px;
+    }
+
+    .essay-content h1 {
+        font-size: 2em;
+    }
+
+    .inspiration-item h2 {
+        font-size: 1.5em;
+    }
+} 

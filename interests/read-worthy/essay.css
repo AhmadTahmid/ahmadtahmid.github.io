@@ -1,0 +1,114 @@
+/* Essay specific styles */
+.essay-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Header styles */
+header {
+    margin-bottom: 60px;
+}
+
+/* Essay content */
+.essay-content {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    color: #000;
+}
+
+.essay-content h1 {
+    font-size: 2.5em;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+    color: #000;
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+.intro {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.2em;
+    color: rgba(0, 0, 0, 0.7);
+    margin-bottom: 2em;
+    font-style: italic;
+}
+
+/* Book list */
+.book-list {
+    font-family: 'Space Mono', monospace;
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+.book-item {
+    margin-bottom: 1em;
+    padding: 0.5em;
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.book-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+    transform: translateX(10px);
+}
+
+/* Animation for book items */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger the animations */
+.book-item:nth-child(1) { animation-delay: 0.1s; }
+.book-item:nth-child(2) { animation-delay: 0.15s; }
+.book-item:nth-child(3) { animation-delay: 0.2s; }
+.book-item:nth-child(4) { animation-delay: 0.25s; }
+.book-item:nth-child(5) { animation-delay: 0.3s; }
+/* Continue for all items */
+
+/* Update note animation */
+.update-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9em;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: right;
+    margin-top: 3em;
+    font-style: italic;
+    padding-right: 1em;
+    animation: fadeInOut 2s infinite;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .essay-container {
+        padding: 20px;
+    }
+
+    .essay-content {
+        padding: 30px 20px;
+    }
+
+    .essay-content h1 {
+        font-size: 2em;
+    }
+
+    .book-item {
+        font-size: 0.9em;
+    }
+} 
