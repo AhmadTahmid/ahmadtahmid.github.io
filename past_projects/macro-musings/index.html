@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decoupling of wages from productivity - Ahmad Tahmid</title>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="macro.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container essay-container">
+        <header>
+            <a href="../" class="back-link">← Back to Projects</a>
+        </header>
+
+        <article class="essay-content">
+            <h1>Decoupling of wages from productivity</h1>
+            
+            <section class="intro">
+                <p>a meek attempt to see for myself and also get my hands dirty</p>
+            </section>
+
+            <section class="visualization-section">
+                <h2>Real Income Trends</h2>
+                <div class="chart-container">
+                    <canvas id="incomeChart"></canvas>
+                </div>
+                <div class="chart-controls">
+                    <button id="downloadIncomeData" class="control-btn">Download Real Income Data</button>
+                </div>
+                <div class="data-notes">
+                    <p>Source: Eurostat</p>
+                    <p>The real income data comes from Eurostat's harmonized statistics, with 2010 as the base year (index=100). The values are adjusted for inflation, allowing for meaningful comparisons across time. A value of 101 means real income is 1% higher than in 2010, while 99 means it's 1% lower.</p>
+                </div>
+            </section>
+
+            <section class="visualization-section">
+                <h2>Labor Productivity Growth by Time Period</h2>
+                <div class="chart-container">
+                    <canvas id="productivityChart"></canvas>
+                </div>
+                <div class="chart-controls">
+                    <button id="resetZoomProd" class="control-btn">Reset Zoom</button>
+                    <button id="downloadProdData" class="control-btn">Download Productivity Data</button>
+                </div>
+                <div class="data-notes">
+                    <p>Source: ISTAT (Italian National Institute of Statistics)</p>
+                    <p>Note: Values show average annual growth rates for each time period</p>
+                    <p>Color coding: Blue = Long-term (1995+), Green = Medium-term (2000+), Yellow = Recent (2009+)</p>
+                </div>
+            </section>
+
+            <section class="methodology">
+                <h2>Labor Productivity Methodology</h2>
+                <p>The productivity data comes from ISTAT's "Tavole misure di produttività" dataset, specifically Table 2 ("Tavola 2 - Produttività del lavoro nei principali paesi europei"). The data is organized into three categories to show how productivity growth varies across different time horizons:</p>
+                <ul>
+                    <li>Long-term growth: Periods starting from 1995</li>
+                    <li>Medium-term growth: Periods starting from 2000</li>
+                    <li>Recent growth: Periods starting from 2009 or later</li>
+                </ul>
+                <p>Each bar represents the average annual growth rate for that specific time period. Positive values indicate increased efficiency in the Italian economy, while negative values suggest declining productivity.</p>
+            </section>
+
+            <p class="reflection"><em>I feel bottlenecked…. how do I show data for overlapping time periods rather than a traditional time series?? And how do I relate these discrete productivity growth rate periods with the continuous real income?</em></p>
+
+            <section class="visualization-section">
+                <h2>Combined View: Real Income and Productivity Growth</h2>
+                <div class="chart-container">
+                    <canvas id="combinedChart"></canvas>
+                </div>
+                <div class="data-notes">
+                    <p>This visualization attempts to show the relationship between real income levels and productivity growth rates:</p>
+                    <ul>
+                        <li>The solid pink line shows the real income index (left axis)</li>
+                        <li>The colored bands show different productivity growth periods (right axis)</li>
+                        <li>The overlapping bands illustrate how different time periods show different growth rates</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="methodology">
+                <div class="chart-container methodology-chart">
+                    <canvas id="methodologyChart"></canvas>
+                </div>
+                <div class="data-notes">
+                    <p>First attempt: A dual-axis visualization showing:</p>
+                    <ul>
+                        <li>Real income as a continuous line (left axis)</li>
+                        <li>Productivity growth periods as overlapping bands (right axis)</li>
+                    </ul>
+                </div>
+
+                <div class="chart-container methodology-chart">
+                    <canvas id="timelineChart"></canvas>
+                </div>
+                <div class="data-notes">
+                    <p>Second attempt: A timeline visualization showing:</p>
+                    <ul>
+                        <li>Real income as a continuous line</li>
+                        <li>Productivity growth periods as colored background regions</li>
+                        <li>Growth rates annotated within their respective time periods</li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+    </div>
+
+    <script src="chart.js"></script>
+</body>
+</html> 
