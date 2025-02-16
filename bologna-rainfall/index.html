@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rain, rain go away - Ahmad Tahmid</title>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="rainfall.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container essay-container">
+        <header>
+            <a href="../" class="back-link">← Back to Projects</a>
+        </header>
+
+        <article class="essay-content">
+            <section class="narrative">
+                <p>During the evening of 19th October I headed from Bologna to home in San Benedetto Val di Sambro….. A journey so familiar yet made unusual by the frequent stops in the train track (due to weather conditions). I got down at my stop well over 30 minutes after the scheduled time to meet a rain so intense that evoked memories of monsoon in Bangladesh….. The bus to take me to the top of the mountain was nowhere to be seen and SURELY no soul would venture outside in this inclement weather. I could only wait with trepidation but eventually took a train back to bologna where the clouds could muster only a drizzle!! (I was very fortunate to have a place to spend the night in Bologna)</p>
+                
+                <p>In the following days San Benedetto is battered by landslides…. Fortunately, there is no casualties or significant loss of property, only few homes are evacuated as precaution. <a href="https://www.ilpost.it/2024/10/29/san-benedetto-frana-alluvione/" target="_blank" class="source-link">A San Benedetto Val di Sambro si è riattivata una grande frana di 30 anni fa →</a></p>
+                
+                <p>At any rate I came across the rainfall data by the comune of Bologna and thought to do some analysis guided by the question whether the rainfall has actually increased (I remember in past years when lessons in person were cancelled due to heavy rainfall)…. Well it seems outlier rainfall hasn't really increased? I thought to utilize this opportunity to build a R Shiny on top of my analysis too</p>
+                
+                <p class="reflection">TBH I do not know the answer for San Benedetto yet….it may as well be that if the outlier rainfall hasn't really changed in bologna it hasn't so in San Benedetto too…Idk…. Sometimes I can have 8 cm of snow outside my house and none in the train station several hundred metres down!</p>
+            </section>
+
+            <section class="visualization-section">
+                <div class="shiny-container">
+                    <iframe 
+                        src="https://ahmadtahmid.shinyapps.io/precipitazione/" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+
+            <section class="methodology">
+                <h2>Methodology</h2>
+                <ul>
+                    <li>Monthly medians to represent typical rainfall patterns</li>
+                    <li>Outlier events using the Interquartile Range (IQR = Q3 – Q1) method and defining outliers as any rainfall amount above Q3 + 1.5 × IQR</li>
+                    <li>Seasonal averages calculated by grouping months into meteorological seasons</li>
+                </ul>
+            </section>
+
+            <section class="visualization-section">
+                <div class="chart-container">
+                    <canvas id="monthlyMedianChart"></canvas>
+                </div>
+            </section>
+
+            <section class="visualization-section">
+                <div class="chart-container">
+                    <canvas id="outliersChart"></canvas>
+                </div>
+            </section>
+
+            <section class="visualization-section">
+                <div class="chart-container">
+                    <canvas id="seasonalChart"></canvas>
+                </div>
+            </section>
+
+            <div class="api-info">
+                <p class="instruction">The data should update regularly (with the comune di Bologna's site)</p>
+                <p class="instruction">Slider to visualize different years</p>
+                <a href="https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/precipitazioni_bologna/records?limit=20" target="_blank" class="api-link">API endpoint: https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/precipitazioni_bologna/records?limit=20</a>
+                <a href="https://opendata.comune.bologna.it/explore/dataset/precipitazioni_bologna/information/?disjunctive.stagione&sort=date&dataChart=eyJxdWVyaWVzIjpbeyJjaGFydHMiOlt7InR5cGUiOiJsaW5lIiwiZnVuYyI6IlNVTSIsInlBeGlzIjoiMTg0X2F2Z19kIiwic2NpZW50aWZpY0Rpc3BsYXkiOnRydWUsImNvbG9yIjoiI2ZmMDAwMCJ9XSwieEF4aXMiOiJkYXRlIiwibWF4cG9pbnRzIjoiIiwidGltZXNjYWxlIjoieWVhciIsInNvcnQiOiIiLCJjb25maWciOnsiZGF0YXNldCI6InByZWNpcGl0YXppb25pX2JvbG9nbmEiLCJvcHRpb25zIjp7ImRpc2p1bmN0aXZlLnN0YWdpb25lIjp0cnVlLCJzb3J0IjoiZGF0ZSJ9fX1dLCJkaXNwbGF5TGVnZW5kIjp0cnVlLCJhbGlnbk1vbnRoIjp0cnVlfQ%3D%3D" target="_blank" class="api-link">Original data source →</a>
+            </div>
+
+            <section class="notes-to-self">
+                <h2>Notes to self</h2>
+                <ul>
+                    <li>The "records" endpoint on the Bologna portal only let someone retrieve a maximum of 100 rows.<br>
+                    Solution: I switched to the "exports" endpoint (CSV download) which has no limit on the number of rows, letting me pull the entire dataset at once.</li>
+                    
+                    <li>Initially, read.csv() returned a single column like "date.184_avg_d.stagione", (meaning the file wasn't being split properly???)<br>
+                    Solution: I discovered the CSV actually used semicolon separators (sep=";")</li>
+                </ul>
+            </section>
+        </article>
+    </div>
+
+    <script src="chart.js"></script>
+</body>
+</html> 
