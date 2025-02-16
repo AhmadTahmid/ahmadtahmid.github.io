@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dota 2 Bayesian Tracker - Ahmad Tahmid</title>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        .project-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .back-link {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            padding: 10px 20px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-5px);
+        }
+
+        .content-section {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        p {
+            font-family: 'Space Mono', monospace;
+            color: rgba(0, 0, 0, 0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .visualization {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 10px;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .blink-text {
+            font-size: 2em;
+            font-weight: bold;
+            animation: blink 1s infinite;
+            color: #ff4444;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .abandoned-flash {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #ff0000;
+            text-align: center;
+            text-transform: uppercase;
+            animation: blink 0.5s infinite;
+            margin: 20px 0;
+        }
+
+        .scripts-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f8f8;
+            border-radius: 10px;
+        }
+
+        .download-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 0;
+            transition: background 0.3s ease;
+        }
+
+        .download-link:hover {
+            background: #45a049;
+        }
+
+        .image-section {
+            margin: 30px 0;
+        }
+
+        .steam-id-container {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            padding: 15px;
+            max-width: 600px;
+            margin: 20px auto;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .steam-id-row {
+            display: flex;
+            align-items: baseline;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .steam-id-label {
+            flex: 0 0 120px;
+            text-align: right;
+            padding-right: 15px;
+            color: #495057;
+        }
+
+        .steam-id-value {
+            flex: 1;
+            color: #212529;
+        }
+
+        .steam-id-value.red {
+            color: #dc3545;
+        }
+
+        .steam-id-value.green {
+            color: #28a745;
+        }
+
+        .input-row {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        .profile-link {
+            color: #dc3545;
+            text-decoration: none;
+        }
+
+        .profile-link:hover {
+            text-decoration: underline;
+        }
+
+        .image-caption {
+            margin-top: 15px;
+            font-family: 'Space Mono', monospace;
+            font-size: 1.1em;
+            color: #333;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="project-container">
+        <header>
+            <a href="../" class="back-link">← Back to Projects</a>
+        </header>
+
+        <div class="content-section">
+            <h1>Dota 2 Bayesian Tracker</h1>
+            
+            <p><em>A performance tracking system that leverages Bayesian methods to analyze and predict Dota 2 gameplay metrics. The system treats unknown parameters (player skill levels and hero selection impacts) as random variables with prior distributions that reflect initial beliefs or known constraints. As new match data is collected, these priors are updated to posterior distributions, capturing both updated estimates and uncertainty levels.</em></p>
+
+            <p>The implementation uses a Naive Bayes classifier approach where:</p>
+            <ul style="font-family: 'Space Mono', monospace; color: rgba(0, 0, 0, 0.7); line-height: 1.6; margin-bottom: 20px; padding-left: 40px;">
+                <li>Prior probabilities are established for match outcomes P(Win)</li>
+                <li>Likelihood of hero combinations given outcomes P(Heroes|Win) is estimated</li>
+                <li>Posterior probabilities P(Win|Heroes) are computed for new lineups using Bayes' theorem</li>
+            </ul>
+
+            <p>This probabilistic framework allows for continuous model updates as matches complete, providing not just point estimates but full probability distributions that reflect genuine uncertainty in predictions.</p>
+
+            <div class="image-section">
+                <div class="steam-id-container">
+                    <div class="input-row">
+                        <span>input </span>
+                        <span>76561199430322805</span>
+                        <span> interpreted as </span>
+                        <span>steamID64</span>
+                    </div>
+                    
+                    <div class="steam-id-row">
+                        <span class="steam-id-label">steamID</span>
+                        <span class="steam-id-value red">STEAM_0:1:735028538</span>
+                    </div>
+                    
+                    <div class="steam-id-row">
+                        <span class="steam-id-label">steamID3</span>
+                        <span class="steam-id-value red">[U:1:1470057077]</span>
+                    </div>
+                    
+                    <div class="steam-id-row">
+                        <span class="steam-id-label">steamID64</span>
+                        <span class="steam-id-value red">76561199430322805</span>
+                    </div>
+                    
+                    <div class="steam-id-row">
+                        <span class="steam-id-label">customURL</span>
+                        <span class="steam-id-value">not set</span>
+                    </div>
+                    
+                    <div class="steam-id-row">
+                        <span class="steam-id-label">profile state</span>
+                        <span class="steam-id-value green">public</span>
+                    </div>
+                    
+                    <div class="steam-id-row">
+                        <span class="steam-id-label">profile created</span>
+                        <span class="steam-id-value">November 7, 2022</span>
+                    </div>
+                    
+                    <div class="steam-id-row">
+                        <span class="steam-id-label">name</span>
+                        <span class="steam-id-value">shalcueva_40</span>
+                    </div>
+                    
+                    <div class="steam-id-row">
+                        <span class="steam-id-label">location</span>
+                        <span class="steam-id-value">not set</span>
+                    </div>
+                    
+                    <div class="steam-id-row">
+                        <span class="steam-id-label">status</span>
+                        <span class="steam-id-value">online</span>
+                    </div>
+                    
+                    <div class="steam-id-row">
+                        <span class="steam-id-label">profile</span>
+                        <span class="steam-id-value">
+                            <a href="http://steamcommunity.com/profiles/76561199430322805" class="profile-link">http://steamcommunity.com/profiles/76561199430322805</a>
+                        </span>
+                    </div>
+                </div>
+                <p class="image-caption">32-bit ID for OpenDota API</p>
+            </div>
+
+            <p>Interactive visualizations of player performance metrics, Bayesian updating in action, and predictive modeling results.</p>
+
+            <div class="scripts-section">
+                <h2>Project Scripts</h2>
+                <a href="downloads/dashboard.py" class="download-link">Download Dashboard Script</a><br>
+                <a href="downloads/bayesian_model.py" class="download-link">Download Bayesian Model Script</a><br>
+                <a href="downloads/requirements.txt" class="download-link">Download Requirements File</a>
+            </div>
+
+            <div class="abandoned-flash">Abandoned</div>
+        </div>
+    </div>
+</body>
+</html> 

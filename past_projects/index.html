@@ -78,6 +78,15 @@
             background: #000;
             color: #fff;
         }
+
+        .abandoned-tag {
+            color: #ff0000;
+            font-size: 0.8em;
+            font-family: 'Space Mono', monospace;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -87,6 +96,12 @@
         </header>
 
         <ul class="project-list">
+            <li class="project-item" style="position: relative;">
+                <span class="abandoned-tag">abandoned</span>
+                <h2 class="project-title">Dota 2 Bayesian Tracker</h2>
+                <p class="project-description">Performance tracking system to analyze and predict Dota 2 gameplay metrics.</p>
+                <a href="dota2-bayesian-tracker/" class="project-link">View Project →</a>
+            </li>
             <li class="project-item">
                 <h2 class="project-title">Macro musings: Decoupling of wages from productivity</h2>
                 <p class="project-description">An exploration of Italian labor productivity growth and real income trends using data from ISTAT and Eurostat.</p>
