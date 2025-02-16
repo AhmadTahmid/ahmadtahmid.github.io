@@ -40,7 +40,7 @@ let analysisResults = null;
 async function loadAnalysisResults() {
     try {
         console.log('Fetching analysis results...');
-        const response = await fetch('/past_projects/word-signature/analysis_results.json');
+        const response = await fetch('./analysis_results.json');
         analysisResults = await response.json();
         console.log('Analysis results loaded:', analysisResults);
         updatePermanentAnalysis();
@@ -77,6 +77,11 @@ async function loadAnalysisResults() {
             sentiment_trends: {
                 avg_polarity: 0.11,
                 avg_subjectivity: 0.50
+            },
+            vocabulary_richness: {
+                ttr: 0.006,
+                hapax_percentage: 0.4,
+                guiraud_r: 1.01
             }
         };
     }
