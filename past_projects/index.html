@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Past Projects - Ahmad Tahmid</title>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .projects-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .back-link {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            padding: 10px 20px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-5px);
+        }
+
+        .project-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .project-item {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-title {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 1.8em;
+            margin: 0 0 15px 0;
+            color: #000;
+        }
+
+        .project-description {
+            font-family: 'Space Mono', monospace;
+            color: rgba(0, 0, 0, 0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .project-link {
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            color: #000;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: #000;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="projects-container">
+        <header>
+            <a href="../" class="back-link">← Back to Home</a>
+        </header>
+
+        <ul class="project-list">
+            <li class="project-item">
+                <h2 class="project-title">Decoupling of wages from productivity</h2>
+                <p class="project-description">An exploration of Italian labor productivity growth and real income trends, visualizing the relationship between these key economic indicators using data from ISTAT and Eurostat.</p>
+                <a href="macro-musings/" class="project-link">View Project →</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html> 
