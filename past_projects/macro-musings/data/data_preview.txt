@@ -1,0 +1,128 @@
+Available sheets and their contents:
+
+
+Sheet: LEGENDA
+Columns:
+['Unnamed: 0', 'Unnamed: 1']
+
+First few rows:
+  Unnamed: 0                                                              Unnamed: 1
+0   Tavola 1  Tavola 1 - Valore aggiunto, inputs produttivi e misure di produttività
+1   Tavola 2         Tavola 2 - Produttività del lavoro nei principali paesi europei
+2   Tavola 3        Tavola 3 - Produttività del capitale e capitale per ora lavorata
+3   Tavola 4                 Tavola 4 - Contributi alla crescita del valore aggiunto
+4   Tavola 5       Tavola 5 - Contributi alla crescita della produttività del lavoro
+
+================================================================================
+
+Sheet: TAVOLA 1
+Columns:
+['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 5', 'Unnamed: 6', 'Unnamed: 7']
+
+First few rows:
+                                                               Unnamed: 0       Unnamed: 1         Unnamed: 2         Unnamed: 3                          Unnamed: 4               Unnamed: 5                 Unnamed: 6                       Unnamed: 7
+0  Tavola 1 - Valore aggiunto, inputs produttivi e misure di produttività              NaN                NaN                NaN                                 NaN                      NaN                        NaN                              NaN
+1                                         Tassi di variazione medii annui              NaN                NaN                NaN                                 NaN                      NaN                        NaN                              NaN
+2                                                                     NaN              NaN                NaN                NaN                                 NaN                      NaN                        NaN                              NaN
+3                                                                     NaN  Valore aggiunto  Inputs produttivi                NaN                                 NaN   Misure di produttività                        NaN                              NaN
+4                                                                     NaN              NaN       Ore lavorate  Input di capitale  Indice composito lavoro e capitale  Produttività del lavoro  Produttività del capitale  Produttività totale dei fattori
+
+================================================================================
+
+Sheet: TAVOLA 2
+Columns:
+['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 5']
+
+First few rows:
+                                                        Unnamed: 0 Unnamed: 1 Unnamed: 2 Unnamed: 3 Unnamed: 4 Unnamed: 5
+0  Tavola 2 - Produttività del lavoro nei principali paesi europei        NaN        NaN        NaN        NaN        NaN
+1                                  Tassi di variazione medii annui        NaN        NaN        NaN        NaN        NaN
+2                                                              NaN        NaN        NaN        NaN        NaN        NaN
+3                                                              NaN       EU27         DE         ES         FR         IT
+4                                         Produttività del lavoro         NaN        NaN        NaN        NaN        NaN
+
+================================================================================
+
+Sheet: TAVOLA 3
+Columns:
+['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 5', 'Unnamed: 6', 'Unnamed: 7', 'Unnamed: 8', 'Unnamed: 9', 'Unnamed: 10', 'Unnamed: 11']
+
+First few rows:
+                                                         Unnamed: 0       Unnamed: 1    Unnamed: 2          Unnamed: 3             Unnamed: 4                           Unnamed: 5                             Unnamed: 6                           Unnamed: 7                     Unnamed: 8                                   Unnamed: 9                                    Unnamed: 10                Unnamed: 11
+0  Tavola 3 - Produttività del capitale e capitale per ora lavorata              NaN           NaN                 NaN                    NaN                                  NaN                                    NaN                                  NaN                            NaN                                          NaN                                            NaN                        NaN
+1                                   Tassi di variazione medii annui              NaN           NaN                 NaN                    NaN                                  NaN                                    NaN                                  NaN                            NaN                                          NaN                                            NaN                        NaN
+2                                                               NaN              NaN           NaN                 NaN                    NaN                                  NaN                                    NaN                                  NaN                            NaN                                          NaN                                            NaN                        NaN
+3                                                               NaN  Valore aggiunto  Ore lavorate   Input di capitale                    NaN                                  NaN                                    NaN  Misure di produttività del capitale                            NaN                                          NaN                                            NaN  Capitale per ora lavorata
+4                                                               NaN              NaN           NaN  Input di capitale   Input di capitale ICT  Input di capitale materiale non-ICT  Input di capitale immateriale non-ICT            Produttività del capitale  Produttività del capitale ICT  Produttività del capitale materiale non-ICT  Produttività del capitale immateriale non-ICT                        NaN
+
+================================================================================
+
+Sheet: TAVOLA 4 
+Columns:
+['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 5', 'Unnamed: 6', 'Unnamed: 7']
+
+First few rows:
+                                                Unnamed: 0       Unnamed: 1                                    Unnamed: 2 Unnamed: 3    Unnamed: 4                  Unnamed: 5                    Unnamed: 6                       Unnamed: 7
+0  Tavola 4 - Contributi alla crescita del valore aggiunto              NaN                                           NaN        NaN           NaN                         NaN                           NaN                              NaN
+1                          Tassi di variazione medii annui              NaN                                           NaN        NaN           NaN                         NaN                           NaN                              NaN
+2                                                      NaN              NaN                                           NaN        NaN           NaN                         NaN                           NaN                              NaN
+3                                                      NaN  Valore aggiunto  Contributi alla crescita del valore aggiunto        NaN           NaN                         NaN                           NaN                              NaN
+4                                                      NaN              NaN                                        Lavoro   Capitale  Capitale ICT  Capitale materiale non-ICT  Capitale immateriale non-ICT  Produttività totale dei fattori
+
+================================================================================
+
+Sheet: TAVOLA 5
+Columns:
+['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 5', 'Unnamed: 6']
+
+First few rows:
+                                                          Unnamed: 0               Unnamed: 1                                              Unnamed: 2                     Unnamed: 3                                   Unnamed: 4                                     Unnamed: 5                       Unnamed: 6
+0  Tavola 5 - Contributi alla crescita della produttività del lavoro                      NaN                                                     NaN                            NaN                                          NaN                                            NaN                              NaN
+1                                    Tassi di variazione medii annui                      NaN                                                     NaN                            NaN                                          NaN                                            NaN                              NaN
+2                                                                NaN                      NaN                                                     NaN                            NaN                                          NaN                                            NaN                              NaN
+3                                                                NaN  Produttività del lavoro  Contributi alla crescita della produttività del lavoro                            NaN                                          NaN                                            NaN                              NaN
+4                                                                NaN                      NaN                               Capitale per ora lavorata  Capitale ICT per ora lavorata  Capitale materiale non-ICT per ora lavorata  Capitale immateriale non-ICT per ora lavorata  Produttività totale dei fattori
+
+================================================================================
+
+Sheet: TAVOLA 6
+Columns:
+['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 5', 'Unnamed: 6']
+
+First few rows:
+                                                  Unnamed: 0 Unnamed: 1 Unnamed: 2 Unnamed: 3 Unnamed: 4  Unnamed: 5  Unnamed: 6
+0  Tavola 6 - Produttività del lavoro. Dinamiche settoriali         NaN        NaN        NaN        NaN         NaN         NaN
+1                            Tassi di variazione medii annui        NaN        NaN        NaN        NaN         NaN         NaN
+2                                                        NaN        NaN        NaN        NaN        NaN         NaN         NaN
+3                                                        NaN  1995-2023  2003-2009  2009-2014  2014-2023    2022.000    2023.000
+4                          Agricoltura; silvicoltura e pesca   1.002601   2.391821   0.358582  -0.573421       1.734      -0.727
+
+================================================================================
+
+Sheet: TAVOLA 7
+Columns:
+['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 5', 'Unnamed: 6']
+
+First few rows:
+                                                                     Unnamed: 0 Unnamed: 1 Unnamed: 2 Unnamed: 3 Unnamed: 4  Unnamed: 5  Unnamed: 6
+0  Tavola 7 - Contributi settoriali alla crescita della produttività del lavoro        NaN        NaN        NaN        NaN         NaN         NaN
+1                                               Tassi di variazione medii annui        NaN        NaN        NaN        NaN         NaN         NaN
+2                                                                           NaN        NaN        NaN        NaN        NaN         NaN         NaN
+3                                                                           NaN  1995-2023  2003-2009  2009-2014  2014-2023    2022.000    2023.000
+4                                             Agricoltura; silvicoltura e pesca    0.07392   0.114566   0.051813   -0.02222       0.023       0.057
+
+================================================================================
+
+Sheet: TAVOLA 8
+Columns:
+['Unnamed: 0', 'Unnamed: 1', 'Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4', 'Unnamed: 5', 'Unnamed: 6', 'Unnamed: 7', 'Unnamed: 8', 'Unnamed: 9', 'Unnamed: 10', 'Unnamed: 11', 'Unnamed: 12']
+
+First few rows:
+                                                                                Unnamed: 0                Unnamed: 1 Unnamed: 2 Unnamed: 3 Unnamed: 4                                 Unnamed: 5 Unnamed: 6 Unnamed: 7 Unnamed: 8                        Unnamed: 9 Unnamed: 10 Unnamed: 11 Unnamed: 12
+0  Tavola 8 - Contributi alla crescita della produttività del lavoro. Risultati settoriali                       NaN        NaN        NaN        NaN                                        NaN        NaN        NaN        NaN                               NaN         NaN         NaN         NaN
+1                                                          Tassi di variazione medii annui                       NaN        NaN        NaN        NaN                                        NaN        NaN        NaN        NaN                               NaN         NaN         NaN         NaN
+2                                                                                      NaN                       NaN        NaN        NaN        NaN                                        NaN        NaN        NaN        NaN                               NaN         NaN         NaN         NaN
+3                                                                                      NaN  Produttività del lavoro         NaN        NaN        NaN  Contributo del capitale per ora lavorata         NaN        NaN        NaN  Produttività totale dei fattori          NaN         NaN         NaN
+4                                                                                      NaN                 1995-2023  2003-2009  2009-2014  2014-2023                                  1995-2023  2003-2009  2009-2014  2014-2023                         1995-2023   2003-2009   2009-2014   2014-2023
+
+================================================================================

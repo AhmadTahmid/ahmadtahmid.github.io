@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Macro-musings - Ahmad Tahmid</title>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="macro.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+</head>
+<body>
+    <div class="container essay-container">
+        <header>
+            <a href="../" class="back-link">← Back to Projects</a>
+        </header>
+
+        <article class="essay-content">
+            <h1>More Macro-musings</h1>
+            
+            <section class="intro">
+                <p>Explorations in everybodys favorite - the labour market!</p>
+            </section>
+
+            <section class="visualization-section">
+                <h2>Total Labor Force Participation</h2>
+                <div class="chart-container">
+                    <canvas id="totalParticipationChart"></canvas>
+                </div>
+                <div class="data-notes">
+                    <p>Source: Eurostat</p>
+                    <p>Overall labor force participation rate (100 - inactivity rate) for the working-age population (ages 15-64).</p>
+                </div>
+            </section>
+
+            <section class="visualization-section">
+                <h2>Labor Force Participation by Gender</h2>
+                <div class="chart-container">
+                    <canvas id="genderParticipationChart"></canvas>
+                </div>
+                <div class="chart-controls">
+                    <button id="downloadParticipationData" class="control-btn">Download Data</button>
+                </div>
+                <div class="data-notes">
+                    <p>Source: Eurostat</p>
+                    <p>The chart compares labor force participation rates between males and females (ages 15-64). Click the legend items to show/hide each gender's data.</p>
+                    <p>Note: Male participation rates are calculated as (2 × Total - Female) to ensure the male and female rates average to the total rate.</p>
+                </div>
+            </section>
+
+            <section class="visualization-section">
+                <h2>Labor Force Participation by Age Group</h2>
+                <div class="chart-container">
+                    <canvas id="ageParticipationChart"></canvas>
+                </div>
+                <div class="data-notes">
+                    <p>Source: Eurostat</p>
+                    <p>The chart shows labor force participation rates across different age groups. Click the legend items to compare specific age cohorts.</p>
+                </div>
+            </section>
+
+            <section class="visualization-section">
+                <h2>Beveridge Curve</h2>
+                <div class="chart-container">
+                    <canvas id="beveridgeChart"></canvas>
+                </div>
+                <div class="chart-controls">
+                    <button id="downloadBeveridgeData" class="control-btn">Download Data</button>
+                </div>
+                <div class="data-notes">
+                    <p>Source: Eurostat</p>
+                    <p>The Beveridge curve shows the relationship between unemployment rate and job vacancy rate. Each point represents a year from 2016 onwards.</p>
+                    <p>A movement along the curve typically represents cyclical changes in the labor market, while shifts of the entire curve might indicate structural changes.</p>
+                    <p><em>I observe the effect of Covid-19</em></p>
+                </div>
+            </section>
+
+            <section class="reflection">
+                <p><em>Dealing with disparate data from separate websites and separate datasets will be the end of me…how I wish there was a NBER for Italy :CCC…. Some reflections on the challenges I faced:</em></p>
+                <ul>
+                    <li><em>Had to handle various data markers like ':' for missing values and annotations like 'b' or 'p' in the Eurostat data</em></li>
+                    <li><em>The code structure in TSV files needed careful parsing (e.g., Q,PC,T,Y15-64,IT for demographic breakdowns)</em></li>
+                    <li><em>Converting inactivity rates to participation rates (100 - inactivity)</em></li>
+                    <li><em>Calculating gender-specific rates: Had to use a weighted formula to derive male rates from total and female rates</em></li>
+                    <li><em>Ensuring data consistency across different age groups and time periods</em></li>
+                    <li><em>Handling the transition from employment-based to direct long-term unemployment data for the Beveridge curve</em></li>
+                    <li><em>Representing multiple dimensions of data (gender, age groups) in a clear way</em></li>
+                    <li><em>Creating interactive elements that allow to explore different aspects of the data</em></li>
+                    <li><em>Designing appropriate scales and axes for different types of rates</em></li>
+                    <li><em>Dealing with missing or incomplete data points</em></li>
+                    <li><em>Ensuring proper aggregation of quarterly data into annual averages</em></li>
+                    <li><em>Maintaining consistency in how we handle edge cases across different datasets</em></li>
+                    <li><em>Coordinating between Python data processing scripts and JavaScript visualizations</em></li>
+                    <li><em>Ensuring proper data flow from raw TSV files to processed JSON for the charts</em></li>
+                    <li><em>Implementing responsive design for the visualizations</em></li>
+                    <li><em>Managing multiple chart types (line charts for participation rates, scatter plot for Beveridge curve)</em></li>
+                    <li><em>Identifying meaningful patterns in labor force participation across different demographics</em></li>
+                </ul>
+                <p><em>But I have learnt a lot indeed:</em></p>
+            </section>
+        </article>
+    </div>
+
+    <script src="chart.js"></script>
+</body>
+</html> 

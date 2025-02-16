@@ -1,0 +1,44 @@
+{
+  "points": [
+    {
+      "year": "2016",
+      "unemployment": 7.1,
+      "vacancy": 0.9
+    },
+    {
+      "year": "2017",
+      "unemployment": 6.9,
+      "vacancy": 1.2
+    },
+    {
+      "year": "2018",
+      "unemployment": 6.5,
+      "vacancy": 1.3
+    },
+    {
+      "year": "2019",
+      "unemployment": 5.9,
+      "vacancy": 1.4
+    },
+    {
+      "year": "2020",
+      "unemployment": 5.1,
+      "vacancy": 0.9
+    },
+    {
+      "year": "2021",
+      "unemployment": 5.4,
+      "vacancy": 1.8
+    },
+    {
+      "year": "2022",
+      "unemployment": 4.6,
+      "vacancy": 2.2
+    },
+    {
+      "year": "2023",
+      "unemployment": 4.2,
+      "vacancy": 2.3
+    }
+  ]
+}
