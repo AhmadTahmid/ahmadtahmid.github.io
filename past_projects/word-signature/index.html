@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordSignature - Ahmad Tahmid</title>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        .project-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .back-link {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            padding: 10px 20px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-5px);
+        }
+
+        .content-section {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Chakra Petch', sans-serif;
+            color: #000;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin: 30px 0 20px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin: 20px 0 15px;
+        }
+
+        p {
+            font-family: 'Space Mono', monospace;
+            color: rgba(0, 0, 0, 0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .methodology-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .visualization-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .visualization-section h2 {
+            font-family: 'Chakra Petch', sans-serif;
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 400px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .feature-item {
+            font-family: 'Space Mono', monospace;
+            color: rgba(0, 0, 0, 0.7);
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .tech-tag {
+            background: #000;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9em;
+        }
+
+        .note {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #000;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+            font-family: 'Chakra Petch', sans-serif;
+        }
+
+        .upload-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .analysis-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            font-family: 'Space Mono', monospace;
+            padding: 10px 20px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            background: #000;
+            color: white;
+        }
+
+        .tab-content {
+            display: block;
+        }
+
+        .tab-content.hidden {
+            display: none;
+        }
+
+        .upload-area {
+            border: 2px dashed #666;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: #fff;
+        }
+
+        .upload-area:hover {
+            border-color: #000;
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .upload-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .upload-icon {
+            font-size: 2em;
+        }
+
+        .upload-text {
+            color: #333;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .submit-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Space Mono', monospace;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #1976D2;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #2196F3;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .processing-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #333;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .processing-status.hidden {
+            display: none;
+        }
+
+        .metrics-summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .metric-group {
+            flex: 1;
+            margin-bottom: 20px;
+            min-width: 300px;
+        }
+
+        .metric-group h3 {
+            font-family: 'Chakra Petch', sans-serif;
+            color: #2196F3;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .metric-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            margin-bottom: 12px;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .metric-label {
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 600;
+            color: #333;
+            min-width: 200px;
+            margin-right: 10px;
+        }
+
+        .metric-value {
+            font-family: 'Space Mono', monospace;
+            color: #000;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .metric-interpretation {
+            font-family: 'Space Mono', monospace;
+            color: #666;
+            font-style: italic;
+            font-size: 0.9em;
+            margin-top: 4px;
+            width: 100%;
+        }
+
+        .privacy-disclaimer {
+            background-color: #fff3f3;
+            border: 2px solid #ff0000;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .privacy-disclaimer .blink {
+            animation: blink-animation 1s steps(5, start) infinite;
+            color: #ff0000;
+            font-weight: bold;
+            font-family: 'Space Mono', monospace;
+        }
+
+        @keyframes blink-animation {
+            to {
+                visibility: hidden;
+            }
+        }
+
+        .privacy-disclaimer p {
+            margin: 10px 0 0 0;
+            color: #333;
+        }
+
+        .privacy-disclaimer a {
+            color: #2196F3;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .privacy-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .popup-content {
+            position: relative;
+            background-color: #fff;
+            margin: 5vh auto;
+            padding: 20px;
+            width: 70%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            max-height: 90vh;
+            overflow-y: auto;
+            /* Custom scrollbar styling */
+            scrollbar-width: thin;
+            scrollbar-color: #2196F3 #f0f0f0;
+        }
+
+        /* Webkit scrollbar styling */
+        .popup-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .popup-content::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+
+        .popup-content::-webkit-scrollbar-thumb {
+            background-color: #2196F3;
+            border-radius: 4px;
+        }
+
+        .close-popup {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .close-popup:hover {
+            color: #000;
+        }
+
+        .popup-content h3 {
+            color: #2196F3;
+            margin-bottom: 20px;
+        }
+
+        .popup-content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .popup-content li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .popup-content li:last-child {
+            border-bottom: none;
+        }
+
+        .popup-content .warning {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff3f3;
+            border-left: 4px solid #ff0000;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .code-block {
+            background-color: #f8f9fa;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            white-space: pre;
+            color: #333;
+        }
+
+        .popup-content ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+
+        .popup-content ol li {
+            padding: 5px 0;
+            border: none;
+        }
+
+        .popup-content p {
+            margin: 15px 0;
+            color: #333;
+        }
+
+        .popup-content ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .popup-content ul li {
+            padding: 5px 0;
+            border: none;
+        }
+
+        .privacy-disclaimer .analysis-note {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .privacy-disclaimer .analysis-note p {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+
+        .privacy-disclaimer .analysis-note ul {
+            list-style-type: disc;
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .privacy-disclaimer .analysis-note li {
+            font-family: 'Space Mono', monospace;
+            color: #333;
+            margin: 5px 0;
+            line-height: 1.4;
+        }
+
+        .privacy-disclaimer .analysis-note strong {
+            color: #ff0000;
+        }
+
+        .upload-formats {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 5px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .file-list {
+            margin: 15px 0;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8f9fa;
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 4px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9em;
+        }
+
+        .file-item .file-name {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .file-item .remove-file {
+            color: #ff0000;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 0 5px;
+        }
+
+        .file-item .remove-file:hover {
+            opacity: 0.8;
+        }
+
+        .upload-area.drag-over {
+            border-color: #2196F3;
+            background: rgba(33, 150, 243, 0.05);
+        }
+
+        .attention-notice {
+            background-color: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .attention-notice .blink {
+            animation: blink-animation 1s steps(5, start) infinite;
+            color: #856404;
+            font-weight: bold;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .attention-notice p {
+            margin: 10px 0 0 0;
+            color: #333;
+        }
+
+        @keyframes blink-animation {
+            to {
+                visibility: hidden;
+            }
+        }
+
+        .metric-guide {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .guide-item {
+            margin-bottom: 10px;
+            font-size: 0.85em;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .guide-item h4 {
+            font-family: 'Chakra Petch', sans-serif;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 0.95em;
+        }
+
+        .guide-item p {
+            font-family: 'Space Mono', monospace;
+            color: #666;
+            font-size: 0.85em;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .guide-item p br {
+            content: "";
+            display: block;
+            margin: 3px 0;
+        }
+
+        /* Add hover effect for better readability */
+        .guide-item:hover {
+            background-color: #fff;
+            padding: 8px;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="project-container">
+        <header>
+            <a href="../" class="back-link">← Back to Projects</a>
+        </header>
+
+        <div class="content-section">
+            <h1>WordSignature</h1>
+            
+            <p>A personal stylometric project that analyzes my writing patterns through word frequencies and linguistic features. By tracking these patterns over time, I aim to understand how my writing style evolves and potentially develop an authorship checker. <i>Inspired by authorship analysis of The Federalist Papers (Kosuke Imai-Quantitative Social Science)</i></p>
+
+            <div class="tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">NLTK</span>
+                <span class="tech-tag">Chart.js</span>
+                <span class="tech-tag">python-docx</span>
+            </div>
+
+            <div class="methodology-section">
+                <h2>Methodology</h2>
+                <h3>Data Collection</h3>
+                <ul class="feature-list">
+                    <li class="feature-item">Process writing samples from .txt and .docx files</li>
+                    <li class="feature-item">Text preprocessing: lowercase conversion, tokenization, and stop word removal (NLTK standard + modal verbs, discourse markers, adverbs like 'usually', 'generally', 'typically', and common function words)</li>
+                </ul>
+
+                <h3>Analysis Techniques</h3>
+                <ul class="feature-list">
+                    <li class="feature-item">Word frequency analysis and distribution</li>
+                    <li class="feature-item">Readability metrics (Flesch Reading Ease, Gunning Fog Index)</li>
+                    <li class="feature-item">Style analysis (vocabulary sophistication, sentence variety)</li>
+                    <li class="feature-item">Sentiment analysis (polarity and subjectivity)</li>
+                </ul>
+            </div>
+
+            <div class="upload-section">
+                <h2>Document Analysis</h2>
+                
+                <div class="analysis-tabs">
+                    <button class="tab-button active" data-tab="yours-truly">Yours Truly</button>
+                    <button class="tab-button" data-tab="quick-analysis">Quick Analysis</button>
+                </div>
+
+                <div class="tab-content" id="yours-truly">
+                    <div class="attention-notice">
+                        <span class="blink">⚠️ Flash Attention</span>
+                        <p>One may analyse their own documents by clicking the 'Quick Analysis' tab</p>
+                    </div>
+
+                    <p>Analysis of some assorted writing samples over time. These results may be periodically updated as new documents are added to the corpus. <i>The notes for a sociology exam feature prominently</i></p>
+                    
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">15,432</div>
+                            <div class="stat-label">Total Words Analyzed</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">2,847</div>
+                            <div class="stat-label">Unique Words</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">18.6</div>
+                            <div class="stat-label">Avg. Words per Sentence</div>
+                        </div>
+                    </div>
+
+                    <h3>Most Frequent Terms</h3>
+                    <div class="chart-container">
+                        <canvas id="frequencyChart"></canvas>
+                    </div>
+
+                    <div class="metrics-summary">
+                        <div class="metric-group">
+                            <h3>Readability</h3>
+                            <div class="metric-item">
+                                <span class="metric-label">Flesch Reading Ease:</span>
+                                <span class="metric-value" id="flesch-score">-</span>
+                                <span class="metric-interpretation" id="flesch-interpretation"></span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Gunning Fog Index:</span>
+                                <span class="metric-value" id="fog-score">-</span>
+                                <span class="metric-interpretation" id="fog-interpretation"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-group">
+                            <h3>Style Characteristics</h3>
+                            <div class="metric-item">
+                                <span class="metric-label">Vocabulary Sophistication:</span>
+                                <span class="metric-value" id="vocab-score">-</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Sentence Variety:</span>
+                                <span class="metric-value" id="variety-score">-</span>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-group">
+                            <h3>Sentiment Analysis</h3>
+                            <div class="metric-item">
+                                <span class="metric-label">Polarity:</span>
+                                <span class="metric-value" id="polarity-score">-</span>
+                                <span class="metric-interpretation" id="polarity-interpretation"></span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Subjectivity:</span>
+                                <span class="metric-value" id="subjectivity-score">-</span>
+                                <span class="metric-interpretation" id="subjectivity-interpretation"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-guide">
+                        <h3>Metrics Guide</h3>
+                        <div class="guide-item">
+                            <h4>Flesch Reading Ease (0-100)</h4>
+                            <p>0-30: Very difficult (Academic/Scientific)<br>
+                            30-50: Difficult (College level)<br>
+                            50-60: Fairly difficult<br>
+                            60-70: Standard<br>
+                            70-80: Fairly easy<br>
+                            80-90: Easy<br>
+                            90-100: Very easy</p>
+                        </div>
+                        <div class="guide-item">
+                            <h4>Gunning Fog Index</h4>
+                            <p>17+: Post-graduate level<br>
+                            14-17: College/University level<br>
+                            12-14: High school level<br>
+                            10-12: General audience<br>
+                            8-10: Conversational English</p>
+                        </div>
+                        <div class="guide-item">
+                            <h4>Vocabulary Sophistication (%)</h4>
+                            <p>20%+: Highly sophisticated vocabulary<br>
+                            15-20%: Advanced vocabulary<br>
+                            10-15%: Standard vocabulary<br>
+                            Below 10%: Simple vocabulary</p>
+                        </div>
+                        <div class="guide-item">
+                            <h4>Sentence Variety</h4>
+                            <p>15+: Excellent variety<br>
+                            10-15: Good variety<br>
+                            5-10: Moderate variety<br>
+                            Below 5: Limited variety</p>
+                        </div>
+                        <div class="guide-item">
+                            <h4>Polarity (-1 to 1)</h4>
+                            <p>-1 to -0.3: Notably negative<br>
+                            -0.3 to 0: Slightly negative<br>
+                            0: Neutral<br>
+                            0 to 0.3: Slightly positive<br>
+                            0.3 to 1: Notably positive</p>
+                        </div>
+                        <div class="guide-item">
+                            <h4>Subjectivity (0 to 1)</h4>
+                            <p>0-0.3: Highly objective<br>
+                            0.3-0.7: Balanced<br>
+                            0.7-1: Highly subjective</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content hidden" id="quick-analysis">
+                    <p>Upload your own document for instant stylometric analysis. Supported formats: .docx, .txt, .pdf</p>
+                    
+                    <div class="privacy-disclaimer">
+                        <span class="blink">⚠️ Privacy and Disclaimer</span>
+                        <p>This is a pet project - <a href="#" id="privacy-link">read the data handling and privacy information</a> before uploading.
+                        <br>Even so, do not upload any sensitive information.</p>
+                        <div class="analysis-note">
+                            <p>Shorter texts provide less context for accurate sentiment analysis... <strong>For my analysis I have uploaded 28,000 words of written text</strong></p>
+                            <ul>
+                                <li>Individual words or very short phrases can be misinterpreted!</li>
+                                <li>Longer texts allow the analyser to better understand: Overall tone, Context, Nuanced expressions and the Balance of positive/negative elements</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="privacy-popup" class="privacy-popup">
+                        <div class="popup-content">
+                            <span class="close-popup">&times;</span>
+                            <h3>Data Handling & Privacy Information</h3>
+                            <p>User uploads a file<br>
+                            File is temporarily saved<br>
+                            Analysis is performed<br>
+                            Results are sent back to the user<br>
+                            Temporary file is immediately deleted<br>
+                            No data persists on the server</p>
+
+                            <div class="code-block">
+# Technical implementation using Python's tempfile:
+temp_file = tempfile.NamedTemporaryFile(delete=False)
+file.save(temp_file.name)
+temp_file.close()
+
+try:
+    # Analyze the document
+    results = analyze_document(temp_file.name)
+finally:
+    # Clean up: delete the temporary file
+    if os.path.exists(temp_file.name):
+        os.unlink(temp_file.name)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="upload-area">
+                        <input type="file" id="document-upload" accept=".docx,.txt,.pdf" multiple style="display: none;">
+                        <label for="document-upload" class="upload-label">
+                            <span class="upload-icon">📄</span>
+                            <span class="upload-text">Drop files here or click to upload multiple documents</span>
+                            <span class="upload-formats">Supported formats: .docx, .txt, .pdf</span>
+                        </label>
+                        <div id="file-list" class="file-list"></div>
+                        <button id="submit-analysis" class="submit-button" style="display: none;">Analyze Documents</button>
+                    </div>
+
+                    <div class="processing-status hidden">
+                        <div class="spinner"></div>
+                        <span>Analyzing document...</span>
+                    </div>
+
+                    <div class="quick-analysis-results hidden">
+                        <div class="stat-grid">
+                            <div class="stat-card">
+                                <div class="stat-number" id="quick-word-count">-</div>
+                                <div class="stat-label">Words</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" id="quick-unique-words">-</div>
+                                <div class="stat-label">Unique Words</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" id="quick-avg-length">-</div>
+                                <div class="stat-label">Avg. Sentence Length</div>
+                            </div>
+                        </div>
+
+                        <div class="chart-container">
+                            <canvas id="quickAnalysisChart"></canvas>
+                        </div>
+
+                        <div class="metrics-summary">
+                            <div class="metric-group">
+                                <h3>Readability</h3>
+                                <div class="metric-item">
+                                    <span class="metric-label">Flesch Reading Ease:</span>
+                                    <span class="metric-value" id="quick-flesch-score">-</span>
+                                    <span class="metric-interpretation" id="quick-flesch-interpretation"></span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Gunning Fog Index:</span>
+                                    <span class="metric-value" id="quick-fog-score">-</span>
+                                    <span class="metric-interpretation" id="quick-fog-interpretation"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="metric-group">
+                                <h3>Style Characteristics</h3>
+                                <div class="metric-item">
+                                    <span class="metric-label">Vocabulary Sophistication:</span>
+                                    <span class="metric-value" id="quick-vocab-score">-</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Sentence Variety:</span>
+                                    <span class="metric-value" id="quick-variety-score">-</span>
+                                </div>
+                            </div>
+                            
+                            <div class="metric-group">
+                                <h3>Sentiment Analysis</h3>
+                                <div class="metric-item">
+                                    <span class="metric-label">Polarity:</span>
+                                    <span class="metric-value" id="quick-polarity-score">-</span>
+                                    <span class="metric-interpretation" id="quick-polarity-interpretation"></span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Subjectivity:</span>
+                                    <span class="metric-value" id="quick-subjectivity-score">-</span>
+                                    <span class="metric-interpretation" id="quick-subjectivity-interpretation"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-guide">
+                        <h3>Metrics Guide</h3>
+                        <div class="guide-item">
+                            <h4>Flesch Reading Ease (0-100)</h4>
+                            <p>0-30: Very difficult (Academic/Scientific)<br>
+                            30-50: Difficult (College level)<br>
+                            50-60: Fairly difficult<br>
+                            60-70: Standard<br>
+                            70-80: Fairly easy<br>
+                            80-90: Easy<br>
+                            90-100: Very easy</p>
+                        </div>
+                        <div class="guide-item">
+                            <h4>Gunning Fog Index</h4>
+                            <p>17+: Post-graduate level<br>
+                            14-17: College/University level<br>
+                            12-14: High school level<br>
+                            10-12: General audience<br>
+                            8-10: Conversational English</p>
+                        </div>
+                        <div class="guide-item">
+                            <h4>Vocabulary Sophistication (%)</h4>
+                            <p>20%+: Highly sophisticated vocabulary<br>
+                            15-20%: Advanced vocabulary<br>
+                            10-15%: Standard vocabulary<br>
+                            Below 10%: Simple vocabulary</p>
+                        </div>
+                        <div class="guide-item">
+                            <h4>Sentence Variety</h4>
+                            <p>15+: Excellent variety<br>
+                            10-15: Good variety<br>
+                            5-10: Moderate variety<br>
+                            Below 5: Limited variety</p>
+                        </div>
+                        <div class="guide-item">
+                            <h4>Polarity (-1 to 1)</h4>
+                            <p>-1 to -0.3: Notably negative<br>
+                            -0.3 to 0: Slightly negative<br>
+                            0: Neutral<br>
+                            0 to 0.3: Slightly positive<br>
+                            0.3 to 1: Notably positive</p>
+                        </div>
+                        <div class="guide-item">
+                            <h4>Subjectivity (0 to 1)</h4>
+                            <p>0-0.3: Highly objective<br>
+                            0.3-0.7: Balanced<br>
+                            0.7-1: Highly subjective</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note">
+                <p>In future I may add more writing samples and try to add more features....possibly more analysis techniques too</p>
+                <p>In an ideal world i would be able to</p>
+                <ul class="feature-list">
+                    <li class="feature-item">Implement an authorship verification system</li>
+                    <li class="feature-item">Add sentiment analysis across different writing contexts</li>
+                    <li class="feature-item">Develop interactive visualizations for exploring the data</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 
