@@ -34,108 +34,20 @@
             transform: translateX(-5px);
         }
 
-        .presentation-container {
-            background: white;
+        .pdf-container {
+            width: 100%;
+            height: 85vh;
+            margin: 20px 0;
             border-radius: 10px;
-            padding: 40px;
-            margin: 20px 0;
+            overflow: hidden;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background: white;
         }
 
-        .slide {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .slide.active {
-            display: block;
-            opacity: 1;
-        }
-
-        .slide-content {
-            margin-bottom: 30px;
-        }
-
-        .slide-title {
-            font-family: 'Chakra Petch', sans-serif;
-            font-size: 2em;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .slide-text {
-            font-family: 'Space Mono', monospace;
-            line-height: 1.6;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .slide-image {
-            max-width: 100%;
-            height: auto;
-            margin: 20px 0;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .slide-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .slide-nav {
-            display: flex;
-            gap: 10px;
-        }
-
-        .nav-button {
-            padding: 10px 20px;
-            background: #2196F3;
-            color: white;
+        iframe {
+            width: 100%;
+            height: 100%;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Space Mono', monospace;
-            transition: background 0.3s ease;
-        }
-
-        .nav-button:hover {
-            background: #1976D2;
-        }
-
-        .nav-button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-
-        .slide-indicator {
-            font-family: 'Space Mono', monospace;
-            color: #666;
-        }
-
-        .download-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: #2196F3;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-family: 'Space Mono', monospace;
-            transition: all 0.3s ease;
-        }
-
-        .download-link:hover {
-            background: #1976D2;
-        }
-
-        .math {
-            overflow-x: auto;
-            padding: 10px 0;
         }
 
         .revisit-section {
@@ -174,70 +86,10 @@
     <div class="container">
         <header>
             <a href="../" class="back-link">← Back to Projects</a>
-            <a href="pdf/big-data-forecasting.pdf" class="download-link" download>
-                📥 Download Full PDF
-            </a>
         </header>
 
-        <div class="presentation-container">
-            <div class="slides">
-                <!-- Introduction Slide -->
-                <div class="slide active" id="slide1">
-                    <div class="slide-content">
-                        <h1 class="slide-title">Forecasting using a large number of predictors</h1>
-                        <p class="slide-text">
-                            A study of various methods for handling high-dimensional data in economic forecasting.
-                            We explore techniques like Principal Components, LASSO, and Ridge Regression.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Ridge Plot Slide -->
-                <div class="slide" id="slide2">
-                    <div class="slide-content">
-                        <h2 class="slide-title">Ridge Regression Results</h2>
-                        <p class="slide-text">
-                            Ridge regression helps handle multicollinearity by adding a penalty term to the regression.
-                            This plot shows the coefficient paths as the penalty parameter changes.
-                        </p>
-                        <img src="images/Ridgeplot.png" alt="Ridge Regression Plot" class="slide-image">
-                    </div>
-                </div>
-
-                <!-- Cumulative Variance Slide -->
-                <div class="slide" id="slide3">
-                    <div class="slide-content">
-                        <h2 class="slide-title">Principal Components Analysis</h2>
-                        <p class="slide-text">
-                            The cumulative variance explained by principal components shows how much information
-                            we can capture with a reduced number of features.
-                        </p>
-                        <img src="images/Cumvar.png" alt="Cumulative Variance Plot" class="slide-image">
-                    </div>
-                </div>
-
-                <!-- LASSO Slide -->
-                <div class="slide" id="slide4">
-                    <div class="slide-content">
-                        <h2 class="slide-title">LASSO Variable Selection</h2>
-                        <p class="slide-text">
-                            LASSO performs both regularization and variable selection. This plot shows how
-                            coefficients are shrunk to exactly zero as the penalty increases.
-                        </p>
-                        <img src="images/LASSO.png" alt="LASSO Plot" class="slide-image">
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide-controls">
-                <div class="slide-nav">
-                    <button class="nav-button" id="prevSlide" disabled>← Previous</button>
-                    <button class="nav-button" id="nextSlide">Next →</button>
-                </div>
-                <div class="slide-indicator">
-                    Slide <span id="currentSlide">1</span> of <span id="totalSlides">4</span>
-                </div>
-            </div>
+        <div class="pdf-container">
+            <iframe src="pdf/big-data-forecasting.pdf" type="application/pdf"></iframe>
         </div>
 
         <div class="revisit-section">
@@ -245,54 +97,5 @@
             <p>An interesting work in the same vein....would I be able to replicate? <a href="https://arxiv.org/abs/2405.17170" target="_blank">Forecasting Four Business Cycle Phases Using Machine Learning: A Case Study of US and EuroZone</a> by Linhares Pontes et al. (2024)</p>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const slides = document.querySelectorAll('.slide');
-            const prevButton = document.getElementById('prevSlide');
-            const nextButton = document.getElementById('nextSlide');
-            const currentSlideSpan = document.getElementById('currentSlide');
-            const totalSlides = slides.length;
-            let currentSlide = 0;
-
-            function updateSlide() {
-                slides.forEach((slide, index) => {
-                    slide.classList.remove('active');
-                    if (index === currentSlide) {
-                        slide.classList.add('active');
-                    }
-                });
-
-                currentSlideSpan.textContent = currentSlide + 1;
-                prevButton.disabled = currentSlide === 0;
-                nextButton.disabled = currentSlide === totalSlides - 1;
-            }
-
-            prevButton.addEventListener('click', () => {
-                if (currentSlide > 0) {
-                    currentSlide--;
-                    updateSlide();
-                }
-            });
-
-            nextButton.addEventListener('click', () => {
-                if (currentSlide < totalSlides - 1) {
-                    currentSlide++;
-                    updateSlide();
-                }
-            });
-
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft' && currentSlide > 0) {
-                    currentSlide--;
-                    updateSlide();
-                } else if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) {
-                    currentSlide++;
-                    updateSlide();
-                }
-            });
-        });
-    </script>
 </body>
 </html> 
