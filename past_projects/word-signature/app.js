@@ -12,80 +12,75 @@ const stopWords = new Set([
     'even', 'new', 'want', 'because', 'any', 'these', 'give', 'day', 'most', 'us'
 ]);
 
-// Privacy popup functionality
+// Load analysis results
+const analysisResults = {
+    total_words: 28540,
+    unique_words: 171,
+    avg_words_per_sentence: 12.01,
+    vocabulary_stats: {
+        avg_word_length: 6.76
+    },
+    word_frequencies: [
+        ["social", 213],
+        ["people", 198],
+        ["one", 193],
+        ["work", 134],
+        ["time", 100],
+        ["theory", 83],
+        ["ties", 79],
+        ["like", 78],
+        ["would", 73],
+        ["life", 72]
+    ],
+    readability_metrics: {
+        avg_flesch_reading_ease: 12.58,
+        avg_gunning_fog: 18.25
+    },
+    style_analysis: {
+        avg_vocabulary_sophistication: 23.08,
+        avg_sentence_variety: 18.41
+    },
+    sentiment_trends: {
+        avg_polarity: 0.11,
+        avg_subjectivity: 0.50
+    },
+    vocabulary_richness: {
+        ttr: 0.006,
+        hapax_percentage: 0.4,
+        guiraud_r: 1.01
+    }
+};
+
+// Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Privacy popup functionality
     const privacyLink = document.getElementById('privacy-link');
     const privacyPopup = document.getElementById('privacy-popup');
     const closePopup = document.querySelector('.close-popup');
 
-    privacyLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        privacyPopup.style.display = 'block';
-    });
+    if (privacyLink) {
+        privacyLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            privacyPopup.style.display = 'block';
+        });
+    }
 
-    closePopup.addEventListener('click', function() {
-        privacyPopup.style.display = 'none';
-    });
+    if (closePopup) {
+        closePopup.addEventListener('click', function() {
+            privacyPopup.style.display = 'none';
+        });
+    }
 
     window.addEventListener('click', function(e) {
         if (e.target === privacyPopup) {
             privacyPopup.style.display = 'none';
         }
     });
+
+    // Update the analysis display
+    console.log('Starting analysis update...');
+    updatePermanentAnalysis();
 });
-
-// Load analysis results
-let analysisResults = null;
-
-async function loadAnalysisResults() {
-    try {
-        console.log('Fetching analysis results...');
-        const response = await fetch('./analysis_results.json');
-        analysisResults = await response.json();
-        console.log('Analysis results loaded:', analysisResults);
-        updatePermanentAnalysis();
-    } catch (error) {
-        console.error('Error loading analysis results:', error);
-        // Use placeholder data if loading fails
-        analysisResults = {
-            total_words: 28540,
-            unique_words: 171,
-            avg_words_per_sentence: 12.01,
-            vocabulary_stats: {
-                avg_word_length: 6.76
-            },
-            word_frequencies: [
-                ["social", 213],
-                ["people", 198],
-                ["one", 193],
-                ["work", 134],
-                ["time", 100],
-                ["theory", 83],
-                ["ties", 79],
-                ["like", 78],
-                ["would", 73],
-                ["life", 72]
-            ],
-            readability_metrics: {
-                avg_flesch_reading_ease: 12.58,
-                avg_gunning_fog: 18.25
-            },
-            style_analysis: {
-                avg_vocabulary_sophistication: 23.08,
-                avg_sentence_variety: 18.41
-            },
-            sentiment_trends: {
-                avg_polarity: 0.11,
-                avg_subjectivity: 0.50
-            },
-            vocabulary_richness: {
-                ttr: 0.006,
-                hapax_percentage: 0.4,
-                guiraud_r: 1.01
-            }
-        };
-    }
-}
 
 function getReadabilityInterpretation(flesch, fog) {
     let interpretation = '';
@@ -372,9 +367,6 @@ function updatePermanentAnalysis() {
     timestampDiv.innerHTML = `Last analyzed: ${new Date(analysisResults.analysis_date).toLocaleString()}`;
     document.querySelector('.content-section').appendChild(timestampDiv);
 }
-
-// Load analysis results when the page loads
-document.addEventListener('DOMContentLoaded', loadAnalysisResults);
 
 // Quick analysis chart (initially hidden)
 let quickAnalysisChart = null;

@@ -708,49 +708,51 @@
                         </div>
                     </div>
 
-                    <h3>Most Frequent Terms</h3>
-                    <div class="chart-container">
-                        <canvas id="frequencyChart"></canvas>
-                    </div>
+                    <div class="visualization-section">
+                        <h3>Most Frequent Terms</h3>
+                        <div class="chart-container">
+                            <canvas id="frequencyChart"></canvas>
+                        </div>
 
-                    <div class="metrics-summary">
-                        <div class="metric-group">
-                            <h3>Readability</h3>
-                            <div class="metric-item">
-                                <span class="metric-label">Flesch Reading Ease:</span>
-                                <span class="metric-value" id="flesch-score">-</span>
-                                <span class="metric-interpretation" id="flesch-interpretation"></span>
+                        <div class="metrics-summary">
+                            <div class="metric-group">
+                                <h3>Readability</h3>
+                                <div class="metric-item">
+                                    <span class="metric-label">Flesch Reading Ease:</span>
+                                    <span class="metric-value" id="flesch-score">-</span>
+                                    <span class="metric-interpretation" id="flesch-interpretation"></span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Gunning Fog Index:</span>
+                                    <span class="metric-value" id="fog-score">-</span>
+                                    <span class="metric-interpretation" id="fog-interpretation"></span>
+                                </div>
                             </div>
-                            <div class="metric-item">
-                                <span class="metric-label">Gunning Fog Index:</span>
-                                <span class="metric-value" id="fog-score">-</span>
-                                <span class="metric-interpretation" id="fog-interpretation"></span>
+                            
+                            <div class="metric-group">
+                                <h3>Style Characteristics</h3>
+                                <div class="metric-item">
+                                    <span class="metric-label">Vocabulary Sophistication:</span>
+                                    <span class="metric-value" id="vocab-score">-</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Sentence Variety:</span>
+                                    <span class="metric-value" id="variety-score">-</span>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="metric-group">
-                            <h3>Style Characteristics</h3>
-                            <div class="metric-item">
-                                <span class="metric-label">Vocabulary Sophistication:</span>
-                                <span class="metric-value" id="vocab-score">-</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-label">Sentence Variety:</span>
-                                <span class="metric-value" id="variety-score">-</span>
-                            </div>
-                        </div>
-                        
-                        <div class="metric-group">
-                            <h3>Sentiment Analysis</h3>
-                            <div class="metric-item">
-                                <span class="metric-label">Polarity:</span>
-                                <span class="metric-value" id="polarity-score">-</span>
-                                <span class="metric-interpretation" id="polarity-interpretation"></span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-label">Subjectivity:</span>
-                                <span class="metric-value" id="subjectivity-score">-</span>
-                                <span class="metric-interpretation" id="subjectivity-interpretation"></span>
+                            
+                            <div class="metric-group">
+                                <h3>Sentiment Analysis</h3>
+                                <div class="metric-item">
+                                    <span class="metric-label">Polarity:</span>
+                                    <span class="metric-value" id="polarity-score">-</span>
+                                    <span class="metric-interpretation" id="polarity-interpretation"></span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Subjectivity:</span>
+                                    <span class="metric-value" id="subjectivity-score">-</span>
+                                    <span class="metric-interpretation" id="subjectivity-interpretation"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
