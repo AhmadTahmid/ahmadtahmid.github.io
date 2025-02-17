@@ -34,6 +34,10 @@
                 </div>
             </section>
 
+            <div class="flash-message">
+                Click on the gender or age groups in the legend to interactively change the plots!
+            </div>
+
             <section class="visualization-section">
                 <h2>Labor Force Participation by Gender</h2>
                 <div class="chart-container">
@@ -97,11 +101,30 @@
                     <li><em>Managing multiple chart types (line charts for participation rates, scatter plot for Beveridge curve)</em></li>
                     <li><em>Identifying meaningful patterns in labor force participation across different demographics</em></li>
                 </ul>
-                <p><em>But I have learnt a lot indeed:</em></p>
             </section>
         </article>
     </div>
 
     <script src="chart.js"></script>
+
+    <style>
+    @keyframes flash {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+
+    .flash-message {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #4CAF50;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 20px 0;
+        text-align: center;
+        font-family: 'Chakra Petch', sans-serif;
+        animation: flash 2s infinite;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        font-weight: bold;
+    }
+    </style>
 </body>
 </html> 
