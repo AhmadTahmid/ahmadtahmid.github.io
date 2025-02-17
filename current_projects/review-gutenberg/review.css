@@ -4,6 +4,29 @@
     padding: 20px;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.back-link {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    padding: 10px 20px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-5px);
+}
+
 .reflection {
     font-family: 'Space Mono', monospace;
     color: #888;
@@ -43,4 +66,13 @@
     background: rgba(255, 255, 255, 0.1);
     transform: translateX(10px);
     border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Add white page margin */
+.page-margin {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
 } 
