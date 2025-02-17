@@ -346,26 +346,35 @@ function updatePermanentAnalysis() {
     const styleInsight = document.querySelector('.insight-card.style .insight-content');
     const sentimentInsight = document.querySelector('.insight-card.sentiment .insight-content');
 
-    readabilityInsight.innerHTML = getReadabilityInterpretation(
-        analysisResults.readability_metrics.avg_flesch_reading_ease,
-        analysisResults.readability_metrics.avg_gunning_fog
-    );
+    // Only update insights if the elements exist
+    if (readabilityInsight) {
+        readabilityInsight.innerHTML = getReadabilityInterpretation(
+            analysisResults.readability_metrics.avg_flesch_reading_ease,
+            analysisResults.readability_metrics.avg_gunning_fog
+        );
+    }
 
-    styleInsight.innerHTML = getStyleInterpretation(
-        analysisResults.style_analysis.avg_vocabulary_sophistication,
-        analysisResults.style_analysis.avg_sentence_variety
-    );
+    if (styleInsight) {
+        styleInsight.innerHTML = getStyleInterpretation(
+            analysisResults.style_analysis.avg_vocabulary_sophistication,
+            analysisResults.style_analysis.avg_sentence_variety
+        );
+    }
 
-    sentimentInsight.innerHTML = getSentimentInterpretation(
-        analysisResults.sentiment_trends.avg_polarity,
-        analysisResults.sentiment_trends.avg_subjectivity
-    );
+    if (sentimentInsight) {
+        sentimentInsight.innerHTML = getSentimentInterpretation(
+            analysisResults.sentiment_trends.avg_polarity,
+            analysisResults.sentiment_trends.avg_subjectivity
+        );
+    }
 
-    // Add analysis timestamp
-    const timestampDiv = document.createElement('div');
-    timestampDiv.className = 'analysis-timestamp';
-    timestampDiv.innerHTML = `Last analyzed: ${new Date(analysisResults.analysis_date).toLocaleString()}`;
-    document.querySelector('.content-section').appendChild(timestampDiv);
+    // Add analysis timestamp if it exists
+    if (analysisResults.analysis_date) {
+        const timestampDiv = document.createElement('div');
+        timestampDiv.className = 'analysis-timestamp';
+        timestampDiv.innerHTML = `Last analyzed: ${new Date(analysisResults.analysis_date).toLocaleString()}`;
+        document.querySelector('.content-section').appendChild(timestampDiv);
+    }
 }
 
 // Quick analysis chart (initially hidden)
