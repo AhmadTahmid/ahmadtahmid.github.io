@@ -6,10 +6,17 @@
     <title>Big Data: Forecasting using a large number of predictors - Ahmad Tahmid</title>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../styles.css">
-    <link rel="stylesheet" href="slides.css">
-    <!-- MathJax for LaTeX rendering -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Only include MathJax if we actually need it -->
+    <script>
+        // Performance logging
+        console.log('Page load started:', new Date().toISOString());
+        window.addEventListener('load', function() {
+            console.log('Page fully loaded:', new Date().toISOString());
+            const timing = window.performance.timing;
+            const pageLoadTime = timing.loadEventEnd - timing.navigationStart;
+            console.log('Total page load time:', pageLoadTime + 'ms');
+        });
+    </script>
     <style>
         .container {
             max-width: 1200px;
@@ -89,7 +96,7 @@
         </header>
 
         <div class="pdf-container">
-            <iframe src="pdf/big-data-forecasting.pdf" type="application/pdf"></iframe>
+            <iframe src="pdf/big-data-forecasting.pdf" type="application/pdf" onload="console.log('PDF iframe loaded:', new Date().toISOString());"></iframe>
         </div>
 
         <div class="revisit-section">
