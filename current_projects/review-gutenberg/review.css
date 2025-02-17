@@ -1,0 +1,46 @@
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.reflection {
+    font-family: 'Space Mono', monospace;
+    color: #888;
+    text-align: center;
+    margin: 40px 0;
+    font-size: 1.1em;
+}
+
+.book-list {
+    margin-top: 40px;
+}
+
+.book-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.book-list li {
+    margin-bottom: 20px;
+}
+
+.book-list a {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    display: inline-block;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.book-list a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+    border-color: rgba(255, 255, 255, 0.3);
+} 
