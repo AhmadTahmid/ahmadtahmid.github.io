@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italian: A Primer - Ahmad Tahmid</title>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        .project-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .back-link {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            padding: 10px 20px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-5px);
+        }
+
+        .content-section {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Chakra Petch', sans-serif;
+            color: #000;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin: 30px 0 20px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin: 20px 0 15px;
+        }
+
+        p {
+            font-family: 'Space Mono', monospace;
+            color: rgba(0, 0, 0, 0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .search-section {
+            margin: 20px 0;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px;
+            font-family: 'Space Mono', monospace;
+            border: 2px solid #000;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+
+        .database-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .entry {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .entry.false-friend {
+            border-left-color: #f44336;
+        }
+
+        .entry.common-mistake {
+            border-left-color: #ff9800;
+        }
+
+        .entry.idiom {
+            border-left-color: #2196F3;
+        }
+
+        .word {
+            font-family: 'Space Mono', monospace;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .meaning {
+            font-family: 'Space Mono', monospace;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .example {
+            font-family: 'Space Mono', monospace;
+            font-style: italic;
+            color: #444;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8em;
+            margin-right: 8px;
+            color: white;
+        }
+
+        .tag.false-friend {
+            background: #f44336;
+        }
+
+        .tag.common-mistake {
+            background: #ff9800;
+        }
+
+        .tag.idiom {
+            background: #2196F3;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-button {
+            font-family: 'Space Mono', monospace;
+            padding: 8px 16px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-button:hover,
+        .filter-button.active {
+            background: #000;
+            color: white;
+        }
+
+        .note {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="project-container">
+        <header>
+            <a href="../" class="back-link">← Back to Projects</a>
+        </header>
+
+        <div class="content-section">
+            <h1>Italian: A Primer</h1>
+            
+            <p>A curated collection of Italian language quirks, focusing on false friends, common mistakes, and idiomatic expressions. This is a living document that grows with my Italian learning journey, inspired by discussions in the Italian learning community.</p>
+
+            <div class="search-section">
+                <input type="text" class="search-input" placeholder="Search for words, phrases, or meanings...">
+                <div class="filters">
+                    <button class="filter-button active" data-filter="all">All</button>
+                    <button class="filter-button" data-filter="false-friend">False Friends</button>
+                    <button class="filter-button" data-filter="common-mistake">Common Mistakes</button>
+                    <button class="filter-button" data-filter="idiom">Idioms</button>
+                </div>
+            </div>
+
+            <div class="database-section">
+                <h2>False Friends (Falsi Amici)</h2>
+                
+                <div class="entry false-friend">
+                    <span class="tag false-friend">False Friend</span>
+                    <div class="word">Attualmente</div>
+                    <div class="meaning">
+                        <strong>Looks like:</strong> "Actually"<br>
+                        <strong>Really means:</strong> "Currently, At present"<br>
+                        <strong>Correct Italian for "Actually":</strong> In realtà
+                    </div>
+                    <div class="example">
+                        "Attualmente vivo a Bologna" = "I currently live in Bologna"
+                    </div>
+                </div>
+
+                <div class="entry false-friend">
+                    <span class="tag false-friend">False Friend</span>
+                    <div class="word">Pretendere</div>
+                    <div class="meaning">
+                        <strong>Looks like:</strong> "To pretend"<br>
+                        <strong>Really means:</strong> "To demand, to claim"<br>
+                        <strong>Correct Italian for "To pretend":</strong> Fingere
+                    </div>
+                    <div class="example">
+                        "Non puoi pretendere che io sappia tutto" = "You can't demand that I know everything"
+                    </div>
+                </div>
+
+                <h2>Common Mistakes</h2>
+
+                <div class="entry common-mistake">
+                    <span class="tag common-mistake">Common Mistake</span>
+                    <div class="word">Essere vs. Stare</div>
+                    <div class="meaning">
+                        Both mean "to be" but are used differently:
+                        <ul>
+                            <li>Essere: permanent conditions, essential characteristics</li>
+                            <li>Stare: temporary states, locations, health conditions</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        "Sono italiano" (permanent) vs. "Sto male" (temporary)
+                    </div>
+                </div>
+
+                <h2>Colorful Idioms</h2>
+
+                <div class="entry idiom">
+                    <span class="tag idiom">Idiom</span>
+                    <div class="word">Non avere peli sulla lingua</div>
+                    <div class="meaning">
+                        <strong>Literal:</strong> "To have no hair on one's tongue"<br>
+                        <strong>Means:</strong> To speak one's mind, to be frank/direct
+                    </div>
+                    <div class="example">
+                        "Marco non ha peli sulla lingua, dice sempre quello che pensa" = "Marco speaks his mind, he always says what he thinks"
+                    </div>
+                </div>
+
+                <div class="entry idiom">
+                    <span class="tag idiom">Idiom</span>
+                    <div class="word">In bocca al lupo</div>
+                    <div class="meaning">
+                        <strong>Literal:</strong> "Into the wolf's mouth"<br>
+                        <strong>Means:</strong> Good luck! (Similar to "break a leg")<br>
+                        <strong>Response:</strong> Crepi! (May it die!)
+                    </div>
+                    <div class="example">
+                        "Hai un esame domani? In bocca al lupo!" = "You have an exam tomorrow? Good luck!"
+                    </div>
+                    <div class="note">This is one of the most common expressions you'll hear in Italy!</div>
+                </div>
+            </div>
+
+            <div class="note-section">
+                <p>This collection is regularly updated based on personal experiences, community discussions, and contributions from Italian learners. Last updated: February 2024</p>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html> 

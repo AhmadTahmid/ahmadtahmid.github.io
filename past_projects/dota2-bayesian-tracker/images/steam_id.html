@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .steam-id-container {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            padding: 15px;
+            max-width: 600px;
+            margin: 20px auto;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .steam-id-row {
+            display: flex;
+            align-items: baseline;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .steam-id-label {
+            flex: 0 0 120px;
+            text-align: right;
+            padding-right: 15px;
+            color: #495057;
+        }
+
+        .steam-id-value {
+            flex: 1;
+            color: #212529;
+        }
+
+        .steam-id-value.red {
+            color: #dc3545;
+        }
+
+        .steam-id-value.green {
+            color: #28a745;
+        }
+
+        .input-row {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        .copy-icon {
+            color: #dc3545;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .profile-link {
+            color: #dc3545;
+            text-decoration: none;
+        }
+
+        .profile-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="steam-id-container">
+        <div class="input-row">
+            <span>input </span>
+            <span>76561199430322805</span>
+            <span> interpreted as </span>
+            <span>steamID64</span>
+        </div>
+        
+        <div class="steam-id-row">
+            <span class="steam-id-label">steamID</span>
+            <span class="steam-id-value red">STEAM_0:1:735028538</span>
+        </div>
+        
+        <div class="steam-id-row">
+            <span class="steam-id-label">steamID3</span>
+            <span class="steam-id-value red">[U:1:1470057077]</span>
+        </div>
+        
+        <div class="steam-id-row">
+            <span class="steam-id-label">steamID64</span>
+            <span class="steam-id-value red">76561199430322805</span>
+        </div>
+        
+        <div class="steam-id-row">
+            <span class="steam-id-label">customURL</span>
+            <span class="steam-id-value">not set</span>
+        </div>
+        
+        <div class="steam-id-row">
+            <span class="steam-id-label">profile state</span>
+            <span class="steam-id-value green">public</span>
+        </div>
+        
+        <div class="steam-id-row">
+            <span class="steam-id-label">profile created</span>
+            <span class="steam-id-value">November 7, 2022</span>
+        </div>
+        
+        <div class="steam-id-row">
+            <span class="steam-id-label">name</span>
+            <span class="steam-id-value">shalcueva_40</span>
+        </div>
+        
+        <div class="steam-id-row">
+            <span class="steam-id-label">location</span>
+            <span class="steam-id-value">not set</span>
+        </div>
+        
+        <div class="steam-id-row">
+            <span class="steam-id-label">status</span>
+            <span class="steam-id-value">online</span>
+        </div>
+        
+        <div class="steam-id-row">
+            <span class="steam-id-label">profile</span>
+            <span class="steam-id-value">
+                <a href="http://steamcommunity.com/profiles/76561199430322805" class="profile-link">http://steamcommunity.com/profiles/76561199430322805</a>
+            </span>
+        </div>
+    </div>
+</body>
+</html> 

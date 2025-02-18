@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bologna Rainfall Analysis</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f6fa;
+            color: #2c3e50;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+
+        .plot-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .source {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bologna Rainfall Analysis</h1>
+
+    <div class="plot-container">
+        <div id="annualPlot"></div>
+    </div>
+
+    <div class="plot-container">
+        <div id="seasonalPlot"></div>
+    </div>
+
+    <div class="plot-container">
+        <div id="monthlyPlot"></div>
+    </div>
+
+    <div class="plot-container">
+        <div id="outliersPlot"></div>
+    </div>
+
+    <div class="source">
+        Data source: Open Data Bologna
+    </div>
+
+    <script src="rainfall.js"></script>
+</body>
+</html> 

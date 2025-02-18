@@ -1,0 +1,8 @@
+streamlit==1.31.1
+requests==2.31.0
+pandas==2.2.0
+numpy==1.26.3
+scikit-learn==1.4.0
+plotly==5.18.0
+pymc==5.10.4
+arviz==0.17.1 
