@@ -28,14 +28,20 @@ header {
 }
 
 .reflection {
-    font-family: 'Space Mono', monospace;
-    color: #333;
+    font-family: 'Chakra Petch', sans-serif;
+    color: #fff;
     text-align: center;
     margin: 40px 0;
-    font-size: 1.1em;
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
+    font-size: 1.2em;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    border-radius: 10px;
+    border-left: 4px solid #fff;
+    border-right: 4px solid #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+    font-style: italic;
 }
 
 .book-list {
