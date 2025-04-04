@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^current_projects/startup-idea/?$ / [R=301,L] 

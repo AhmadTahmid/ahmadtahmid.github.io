@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /current_projects/startup-idea/
+
+User-agent: *
+Allow: / 
