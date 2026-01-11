@@ -77,7 +77,7 @@ def convert_markdown_to_html(markdown_path):
     """Convert a markdown file to HTML using the template."""
     md = markdown.Markdown(extensions=['meta'])
     
-    with open(markdown_path, 'r', encoding='utf-8') as f:
+    with open(markdown_path, 'r', encoding='utf-8-sig') as f:
         text = f.read()
     
     # Update image paths in markdown
@@ -102,6 +102,10 @@ def process_all_essays():
     markdown_dir = Path('writing/markdown')
     
     for md_file in markdown_dir.glob('*.md'):
+        try:
+            print(f"Processing {md_file.name}...")
+        except UnicodeEncodeError:
+            print(f"Processing {md_file.name.encode('utf-8', 'replace').decode('utf-8')}...")
         # Get the output directory name
         output_dir_name = get_output_dir_name(md_file.stem)
         output_dir = Path('writing') / output_dir_name

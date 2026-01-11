@@ -1,0 +1,242 @@
+.stats-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Player Overview Styles */
+.player-overview {
+    margin-bottom: 40px;
+}
+
+.profile-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#player-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#player-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#player-info h2 {
+    margin: 0;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.8em;
+    color: #fff;
+}
+
+#player-info p {
+    margin: 5px 0 0;
+    font-family: 'Space Mono', monospace;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Quick Stats Section */
+.quick-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card h3 {
+    margin: 0;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.2em;
+    color: #fff;
+}
+
+.stat-card p {
+    margin: 10px 0 0;
+    font-family: 'Space Mono', monospace;
+    font-size: 1.5em;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Performance Chart */
+.performance-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.chart-container {
+    width: 100%;
+    height: 300px;
+}
+
+/* Recent Matches */
+.recent-matches {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#matches-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.match-card {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.match-result {
+    font-family: 'Space Mono', monospace;
+    font-weight: bold;
+}
+
+.match-result.victory {
+    color: #66bb6a;
+}
+
+.match-result.defeat {
+    color: #ef5350;
+}
+
+/* Hero Stats */
+.hero-stats {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#hero-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.hero-card {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.hero-card:hover {
+    transform: translateY(-5px);
+}
+
+.hero-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-card h4 {
+    margin: 0 0 5px 0;
+    font-family: 'Chakra Petch', sans-serif;
+    color: #fff;
+    font-size: 1em;
+}
+
+.hero-card p {
+    margin: 5px 0;
+    font-family: 'Space Mono', monospace;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .quick-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .profile-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    #hero-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.error-message {
+    background: rgba(244, 67, 54, 0.1);
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    color: #ef5350;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-family: 'Space Mono', monospace;
+    backdrop-filter: blur(10px);
+}
+
+.loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px 40px;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Space Mono', monospace;
+    z-index: 1000;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+} 
