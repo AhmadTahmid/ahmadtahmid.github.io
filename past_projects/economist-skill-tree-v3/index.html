@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="A gamified skill tree for economics students to build their economist character and discover career paths.">
+    <title>The Economist's Skill Tree: Gamified (continued)</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <a href="https://ahmadtahmid.github.io/" class="back-link">← Back to Home</a>
+        </header>
+
+        <!-- Main Content Container (White) -->
+        <div class="content-container">
+            <h1 class="title">The Economist's Skill Tree: Gamified <em>(continued)</em></h1>
+
+            <!-- Context Note -->
+            <div class="context-note">
+                The breakthrough success of <em>Clair Obscur: Expedition 33</em> by no-name French upstarts
+                (<em>they are super skilled and passionate of course</em>) inspired me to design a video game
+                skill tree which has since morphed into something else.
+            </div>
+
+            <!-- Game HUD -->
+            <section class="game-hud">
+                <div class="points-display">
+                    <span class="points-label">Skill Points</span>
+                    <span class="points-value" id="available-points">0</span>
+                    <button class="add-point-btn" id="add-point-btn">
+                        <span class="btn-icon">+1</span>
+                        <span class="btn-text">POINT</span>
+                    </button>
+                </div>
+                <div class="reset-wrapper">
+                    <button class="reset-btn" id="reset-btn" title="Reset all progress">🔄 Reset</button>
+                </div>
+            </section>
+
+            <!-- Pathway Section -->
+            <section class="pathways-section">
+                <h2 class="section-title">📊 Skill Pathways</h2>
+                <p class="section-hint">Allocate points to unlock career classes</p>
+
+                <div class="pathways-grid" id="pathways-grid">
+                    <!-- Pathway cards populated by JS -->
+                </div>
+            </section>
+
+            <!-- Classes Section -->
+            <section class="classes-section">
+                <h2 class="section-title">🎭 Career Classes</h2>
+                <p class="section-hint">Meet pathway requirements to unlock</p>
+
+                <div class="classes-grid" id="classes-grid">
+                    <!-- Class cards populated by JS -->
+                </div>
+            </section>
+
+            <!-- Skill Details Panel (Modal) -->
+            <div class="modal-overlay hidden" id="modal-overlay">
+                <div class="modal" id="modal">
+                    <button class="modal-close" id="modal-close">✕</button>
+                    <div class="modal-content" id="modal-content">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+            <!-- End Content Container -->
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

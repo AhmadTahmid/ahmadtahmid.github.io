@@ -1,0 +1,330 @@
+{
+  "pathways": {
+    "theory": {
+      "name": "Theory",
+      "icon": "📚",
+      "color": "#6366f1",
+      "description": "Economic thinking & analytical frameworks",
+      "skills": [
+        {
+          "id": "micro",
+          "name": "Microeconomics",
+          "level": 1,
+          "description": "Optimization, supply/demand, consumer theory, market equilibrium",
+          "tip": "The foundation of all economic thinking. Master this before anything else."
+        },
+        {
+          "id": "macro",
+          "name": "Macroeconomics",
+          "level": 1,
+          "description": "IS-LM, AS-AD, GDP accounting, inflation dynamics, growth models",
+          "tip": "Think big picture: entire economies, not individual agents."
+        },
+        {
+          "id": "econometrics",
+          "name": "Econometrics",
+          "level": 2,
+          "description": "OLS regression, hypothesis testing, confidence intervals, identification",
+          "tip": "Where theory meets data. The most employable undergrad skill."
+        },
+        {
+          "id": "game-theory",
+          "name": "Game Theory",
+          "level": 2,
+          "description": "Nash equilibrium, strategic interaction, mechanism design",
+          "tip": "Essential for IO, auctions, and tech economics."
+        },
+        {
+          "id": "time-series",
+          "name": "Time Series",
+          "level": 3,
+          "description": "ARIMA, VAR, cointegration, forecasting",
+          "tip": "Finance and central banking love this. Stock prices, GDP, inflation..."
+        },
+        {
+          "id": "causal-inference",
+          "name": "Causal Inference",
+          "level": 3,
+          "description": "DiD, IV, RDD, matching—the Credibility Revolution toolkit",
+          "tip": "Your superpower over data scientists. They predict; you explain WHY."
+        }
+      ]
+    },
+    "math": {
+      "name": "Math",
+      "icon": "🧮",
+      "color": "#22c55e",
+      "description": "The language of economic models",
+      "skills": [
+        {
+          "id": "calc",
+          "name": "Calculus I-III",
+          "level": 1,
+          "description": "Derivatives, integrals, multivariate optimization",
+          "tip": "Non-negotiable. Every econ model uses optimization."
+        },
+        {
+          "id": "linear-algebra",
+          "name": "Linear Algebra",
+          "level": 1,
+          "description": "Matrices, eigenvalues, vector spaces",
+          "tip": "Crucial for econometrics and any work with data."
+        },
+        {
+          "id": "probability",
+          "name": "Probability & Stats",
+          "level": 2,
+          "description": "Distributions, expectations, variance, hypothesis testing",
+          "tip": "The bridge between math and data. Master before econometrics."
+        },
+        {
+          "id": "real-analysis",
+          "name": "Real Analysis",
+          "level": 3,
+          "description": "Proofs, epsilon-delta, convergence, measure theory",
+          "tip": "⚠️ THE PhD FILTER. If you want top programs, you need this."
+        },
+        {
+          "id": "stochastic-calc",
+          "name": "Stochastic Calculus",
+          "level": 4,
+          "description": "Ito's lemma, Brownian motion, Black-Scholes",
+          "tip": "Finance PhD territory. Quant hedge funds pay $$$$ for this."
+        },
+        {
+          "id": "optimization",
+          "name": "Numerical Methods",
+          "level": 3,
+          "description": "Gradient descent, Newton's method, dynamic programming",
+          "tip": "When closed-form solutions don't exist, you compute."
+        }
+      ]
+    },
+    "software": {
+      "name": "Software",
+      "icon": "💻",
+      "color": "#f59e0b",
+      "description": "Tools that translate ideas into output",
+      "skills": [
+        {
+          "id": "excel",
+          "name": "Excel",
+          "level": 1,
+          "description": "Lookups, pivot tables, charts, basic VBA",
+          "tip": "Don't underestimate this. The world runs on Excel. Seriously."
+        },
+        {
+          "id": "stata",
+          "name": "Stata",
+          "level": 2,
+          "description": "Panel data, regression, policy analysis standard",
+          "tip": "Still the king in academia and government. Learn to love .do files."
+        },
+        {
+          "id": "r",
+          "name": "R",
+          "level": 2,
+          "description": "tidyverse, ggplot2, statistical computing",
+          "tip": "Statisticians and development economists live here."
+        },
+        {
+          "id": "python",
+          "name": "Python",
+          "level": 2,
+          "description": "Pandas, NumPy, scikit-learn, general programming",
+          "tip": "Tech industry standard. The most versatile choice."
+        },
+        {
+          "id": "sql",
+          "name": "SQL",
+          "level": 2,
+          "description": "Database queries, joins, aggregations",
+          "tip": "🚨 NEVER TAUGHT IN ECON but CRUCIAL for industry jobs."
+        },
+        {
+          "id": "matlab",
+          "name": "MATLAB/Dynare",
+          "level": 3,
+          "description": "DSGE modeling, numerical methods, central bank standard",
+          "tip": "If you want to work at a central bank, learn Dynare."
+        },
+        {
+          "id": "latex",
+          "name": "LaTeX",
+          "level": 2,
+          "description": "Academic typesetting, BibTeX citations",
+          "tip": "You cannot write serious papers in Word. Just accept it."
+        }
+      ]
+    }
+  },
+  "classes": [
+    {
+      "id": "tech-rogue",
+      "name": "Tech Rogue",
+      "icon": "🥷",
+      "tagline": "Data Science & Tech Economics",
+      "description": "Design experiments, measure causal impact, optimize marketplaces. High salary, fast pace.",
+      "employers": ["Amazon", "Uber", "Google", "Meta", "Netflix", "Spotify"],
+      "salaryUS": "$200K-$400K",
+      "salaryEU": "€80K-€150K",
+      "requirements": {
+        "theory": 4,
+        "math": 2,
+        "software": 4
+      },
+      "keySkills": ["Python", "SQL", "A/B Testing", "Causal Inference"],
+      "specialAbilities": [
+        "🎯 A/B Testing Mastery: Run experiments at scale",
+        "📊 Causal ML: Heterogeneous treatment effects",
+        "🔍 Data Cleaning: 80% of the job, but you're good at it"
+      ],
+      "hiddenRequirement": "It's not about theory—it's about CODING & PREDICTION"
+    },
+    {
+      "id": "academic-archmage",
+      "name": "Academic Archmage",
+      "icon": "🧙‍♂️",
+      "tagline": "The PhD Track",
+      "description": "Publish papers, train PhD students, shape the field. High prestige, long grind.",
+      "employers": ["Top 50 Universities", "Research Institutes", "NBER"],
+      "salaryUS": "$120K-$250K",
+      "salaryEU": "€50K-€100K",
+      "requirements": {
+        "theory": 6,
+        "math": 5,
+        "software": 3
+      },
+      "keySkills": ["Real Analysis", "Stata", "R", "Causal Inference"],
+      "specialAbilities": [
+        "📝 Grant Writing: Secure NSF/ERC funding",
+        "🎓 Academic Writing: Formal, precise, passive voice",
+        "🔬 Research Design: Finding gaps in the literature"
+      ],
+      "hiddenRequirement": "It's not about Economics—it's about REAL ANALYSIS"
+    },
+    {
+      "id": "policy-paladin",
+      "name": "Policy Paladin",
+      "icon": "🛡️",
+      "tagline": "Public Sector & NGOs",
+      "description": "Translate numbers into human welfare. Impact-focused, mission-driven.",
+      "employers": ["Government Ministries", "UN", "World Bank", "Think Tanks"],
+      "salaryUS": "$80K-$150K",
+      "salaryEU": "€50K-€90K",
+      "requirements": {
+        "theory": 4,
+        "math": 2,
+        "software": 3
+      },
+      "keySkills": ["Stata", "Excel", "Cost-Benefit Analysis", "Brief Writing"],
+      "specialAbilities": [
+        "📋 Brief Writing: 50-page paper → 1-page memo for a Minister",
+        "🤝 Stakeholder Management: Navigate politics and bureaucracy",
+        "⚖️ Policy Evaluation: Did this law actually work?"
+      ],
+      "hiddenRequirement": "It's not about complexity—it's about COMMUNICATION"
+    },
+    {
+      "id": "finance-merchant",
+      "name": "Finance Merchant",
+      "icon": "💰",
+      "tagline": "Banking & Consulting",
+      "description": "Study markets, price risk, build trading strategies. High stress, high reward.",
+      "employers": ["Goldman Sachs", "McKinsey", "Citadel", "Two Sigma"],
+      "salaryUS": "$300K-$1M+",
+      "salaryEU": "€120K-€400K",
+      "requirements": {
+        "theory": 3,
+        "math": 5,
+        "software": 3
+      },
+      "keySkills": ["Time Series", "Stochastic Calculus", "Python", "Bloomberg"],
+      "specialAbilities": [
+        "📈 Storytelling: Sell a stock/strategy based on macro trends",
+        "⚡ Speed: React before the market moves",
+        "🌍 Commercial Awareness: Know what the Fed did yesterday"
+      ],
+      "hiddenRequirement": "Speed and MARKET AWARENESS—plus networking"
+    },
+    {
+      "id": "central-banker",
+      "name": "Central Banker",
+      "icon": "🏛️",
+      "tagline": "Monetary Policy & Research",
+      "description": "Set interest rates, model the economy, write influential reports.",
+      "employers": ["Federal Reserve", "ECB", "Bank of England", "IMF"],
+      "salaryUS": "$100K-$180K",
+      "salaryEU": "€70K-€140K",
+      "requirements": {
+        "theory": 5,
+        "math": 4,
+        "software": 4
+      },
+      "keySkills": ["DSGE Modeling", "MATLAB", "Monetary Theory", "Policy Writing"],
+      "specialAbilities": [
+        "📜 Policy Writing: Formal, hedged, influential",
+        "🔮 DSGE Mastery: Dynamic Stochastic General Equilibrium",
+        "💱 Monetary Theory: Taylor rules, QE, inflation targeting"
+      ],
+      "hiddenRequirement": "PhD often required—or exceptional Master's + connections"
+    },
+    {
+      "id": "dev-economist",
+      "name": "Development Economist",
+      "icon": "🌍",
+      "tagline": "JEL Code O",
+      "description": "Run field experiments, evaluate interventions, reduce poverty. Meaningful work.",
+      "employers": ["World Bank", "J-PAL", "IPA", "Gates Foundation"],
+      "salaryUS": "$80K-$150K",
+      "salaryEU": "€50K-€90K",
+      "requirements": {
+        "theory": 4,
+        "math": 3,
+        "software": 4
+      },
+      "keySkills": ["RCT Design", "Stata", "R", "Survey Methods"],
+      "specialAbilities": [
+        "🌾 Fieldwork Ops: Run surveys in remote areas",
+        "🧪 RCT Design: Randomized Control Trials with ethics",
+        "📊 Impact Evaluation: Did this intervention work?"
+      ],
+      "hiddenRequirement": "Willingness to spend months in the field"
+    },
+    {
+      "id": "io-economist",
+      "name": "IO Specialist",
+      "icon": "⚖️",
+      "tagline": "Industrial Organization (JEL L)",
+      "description": "Analyze mergers, market power, antitrust. Heavy computation, high stakes.",
+      "employers": ["DOJ Antitrust", "FTC", "Economic Consulting Firms"],
+      "salaryUS": "$150K-$350K",
+      "salaryEU": "€80K-€180K",
+      "requirements": {
+        "theory": 5,
+        "math": 4,
+        "software": 4
+      },
+      "keySkills": ["Structural IO", "Game Theory", "Python", "MATLAB"],
+      "specialAbilities": [
+        "🏭 Structural Modeling: BLP demand estimation",
+        "📋 Audit Trails: Every step court-defensible",
+        "🔬 IO Theory: HHI, monopoly power, merger analysis"
+      ],
+      "hiddenRequirement": "Extreme attention to detail—zero errors allowed in court"
+    }
+  ],
+  "resources": {
+    "books": [
+      {"title": "Baby Rudin (Principles of Mathematical Analysis)", "purpose": "The PhD Math Filter"},
+      {"title": "Mostly Harmless Econometrics", "purpose": "The Causal Inference Bible"},
+      {"title": "Thinking Strategically", "purpose": "Game Theory Intuition"},
+      {"title": "The Undercover Economist", "purpose": "Econ Intuition for Beginners"}
+    ],
+    "websites": [
+      {"name": "Marginal Revolution", "url": "https://marginalrevolution.com", "desc": "Daily blog every economist reads"},
+      {"name": "NBER Working Papers", "url": "https://nber.org", "desc": "Papers 2 years before publication"},
+      {"name": "#EconTwitter", "url": "https://twitter.com", "desc": "Where actual debates happen"}
+    ]
+  }
+}
