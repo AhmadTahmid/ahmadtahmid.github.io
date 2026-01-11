@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="An interactive skill tree for economics students to explore career paths and required skills.">
+    <title>The Economist's Skill Tree: Rough Mapping</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Context Note (Top Left) -->
+        <div class="context-note">
+            The breakthrough success of <em>Clair Obscur: Expedition 33</em> by no-name French upstarts
+            (<em>they are super skilled and passionate of course</em>) inspired me to design a video game
+            skill tree which has since morphed into something else.
+        </div>
+
+        <!-- JEL Footnote (Top Right) -->
+        <div class="jel-footnote">
+            JEL = Journal of Economic Literature classification system
+        </div>
+
+        <!-- Header -->
+        <header class="header">
+            <a href="https://ahmadtahmid.github.io/" class="back-link">← Back to Home</a>
+            <h1 class="title">The Economist's Skill Tree: Rough Mapping</h1>
+        </header>
+
+        <!-- Controls Bar -->
+        <div class="controls-bar">
+            <div class="search-box">
+                <input type="text" id="skill-search" placeholder="🔍 Search skills..." autocomplete="off">
+            </div>
+            <div class="mode-toggle">
+                <button id="compare-btn" class="control-btn">
+                    <span>⚖️</span> Compare Careers
+                </button>
+            </div>
+        </div>
+
+        <!-- Comparison Info (hidden by default) -->
+        <div class="comparison-info" id="comparison-info">
+            <span class="compare-hint">Select 2 careers to compare</span>
+            <div class="compare-badges" id="compare-badges"></div>
+            <button id="clear-compare" class="clear-btn">✕ Clear</button>
+        </div>
+
+        <!-- Career Forest (Trees above ground) -->
+        <section class="forest-section">
+            <div class="forest" id="forest">
+                <!-- Trees populated dynamically -->
+            </div>
+        </section>
+
+        <!-- Ground Line -->
+        <div class="ground-line">
+            <div class="ground-texture"></div>
+        </div>
+
+        <!-- Underground (Roots/Skills) -->
+        <section class="underground-section">
+            <div class="underground" id="underground">
+                <svg id="roots-svg"></svg>
+            </div>
+        </section>
+
+        <!-- Info Panel (Floating) - starts hidden -->
+        <aside class="info-panel hidden" id="info-panel">
+            <div class="panel-content"></div>
+        </aside>
+
+        <!-- Legend -->
+        <footer class="legend">
+            <div class="legend-item">
+                <span class="legend-dot legend-prereq"></span>
+                <span>Prerequisites</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-dot legend-required"></span>
+                <span>Required</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-dot legend-soft"></span>
+                <span>Soft Skills</span>
+            </div>
+            <div class="legend-item legend-compare">
+                <span class="legend-dot legend-overlap"></span>
+                <span>Overlap (Compare)</span>
+            </div>
+        </footer>
+
+        <!-- Tooltip -->
+        <div class="tooltip" id="tooltip"></div>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

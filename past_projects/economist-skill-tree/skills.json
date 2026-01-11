@@ -1,0 +1,506 @@
+{
+  "layers": {
+    "core": {
+      "name": "The Foundation",
+      "description": "The non-negotiables. Barrier to entry.",
+      "color": "#6366f1",
+      "depth": "deep"
+    },
+    "toolbelt": {
+      "name": "The Toolbelt",
+      "description": "Where the modern applied economist lives.",
+      "color": "#22c55e",
+      "depth": "mid"
+    },
+    "specialization": {
+      "name": "Specializations",
+      "description": "Deep domain expertise.",
+      "color": "#f59e0b",
+      "depth": "shallow"
+    }
+  },
+  "skills": [
+    {
+      "id": "micro",
+      "name": "Micro Theory",
+      "layer": "core",
+      "description": "Optimization, consumer/producer theory, market equilibrium",
+      "jel": [
+        "D",
+        "L"
+      ]
+    },
+    {
+      "id": "macro",
+      "name": "Macro Theory",
+      "layer": "core",
+      "description": "Aggregate equilibrium, growth models, monetary/fiscal policy",
+      "jel": [
+        "E",
+        "F"
+      ]
+    },
+    {
+      "id": "metrics",
+      "name": "Econometrics",
+      "layer": "core",
+      "description": "Regression analysis, hypothesis testing, identification",
+      "jel": [
+        "C"
+      ]
+    },
+    {
+      "id": "game-theory",
+      "name": "Game Theory",
+      "layer": "core",
+      "description": "Strategic interaction, Nash equilibrium, mechanism design",
+      "jel": [
+        "C7",
+        "D"
+      ]
+    },
+    {
+      "id": "calc",
+      "name": "Calculus I-III",
+      "layer": "core",
+      "description": "Derivatives, integrals, multivariate optimization"
+    },
+    {
+      "id": "linear-algebra",
+      "name": "Linear Algebra",
+      "layer": "core",
+      "description": "Matrices, eigenvalues, vector spaces"
+    },
+    {
+      "id": "real-analysis",
+      "name": "Real Analysis",
+      "layer": "core",
+      "description": "The PhD filter. Proofs, convergence, measure theory."
+    },
+    {
+      "id": "time-series",
+      "name": "Time Series",
+      "layer": "core",
+      "description": "ARIMA, VAR, cointegration, forecasting",
+      "jel": [
+        "C22",
+        "E"
+      ]
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "layer": "toolbelt",
+      "description": "Tech/Finance/ML standard. Pandas, NumPy, scikit-learn."
+    },
+    {
+      "id": "r",
+      "name": "R",
+      "layer": "toolbelt",
+      "description": "Statisticians & Dev Econ. tidyverse, ggplot2."
+    },
+    {
+      "id": "stata",
+      "name": "Stata",
+      "layer": "toolbelt",
+      "description": "Academic/Policy incumbent. Great for panel data."
+    },
+    {
+      "id": "sql",
+      "name": "SQL",
+      "layer": "toolbelt",
+      "description": "Crucial for industry. Rarely taught in econ departments."
+    },
+    {
+      "id": "matlab",
+      "name": "Matlab/Dynare",
+      "layer": "toolbelt",
+      "description": "DSGE modeling, numerical methods. Central bank standard."
+    },
+    {
+      "id": "causal-inference",
+      "name": "Causal Inference",
+      "layer": "toolbelt",
+      "description": "The Credibility Revolution: DiD, IV, RDD, matching.",
+      "jel": [
+        "C21",
+        "J"
+      ]
+    },
+    {
+      "id": "ab-testing",
+      "name": "A/B Testing",
+      "layer": "toolbelt",
+      "description": "Experimental design, power analysis, statistical significance."
+    },
+    {
+      "id": "machine-learning",
+      "name": "Machine Learning",
+      "layer": "toolbelt",
+      "description": "Prediction, classification, neural networks."
+    },
+    {
+      "id": "causal-ml",
+      "name": "Causal ML",
+      "layer": "specialization",
+      "description": "Double ML, causal forests, heterogeneous treatment effects."
+    },
+    {
+      "id": "dsge",
+      "name": "DSGE Modeling",
+      "layer": "specialization",
+      "description": "Dynamic Stochastic General Equilibrium. Central bank workhorse.",
+      "jel": [
+        "E"
+      ]
+    },
+    {
+      "id": "monetary-theory",
+      "name": "Monetary Theory",
+      "layer": "specialization",
+      "description": "Interest rates, money supply, Taylor rules, QE.",
+      "jel": [
+        "E"
+      ]
+    },
+    {
+      "id": "rct-design",
+      "name": "RCT Design",
+      "layer": "specialization",
+      "description": "Randomized Control Trials. Fieldwork logistics, ethics.",
+      "jel": [
+        "O",
+        "I"
+      ]
+    },
+    {
+      "id": "structural-io",
+      "name": "Structural IO",
+      "layer": "specialization",
+      "description": "Demand estimation, BLP, computational simulation.",
+      "jel": [
+        "L"
+      ]
+    },
+    {
+      "id": "panel-data",
+      "name": "Panel Data",
+      "layer": "specialization",
+      "description": "Fixed effects, random effects, difference-in-differences.",
+      "jel": [
+        "C23",
+        "J"
+      ]
+    },
+    {
+      "id": "stochastic-calc",
+      "name": "Stochastic Calculus",
+      "layer": "specialization",
+      "description": "Ito's lemma, Brownian motion. Finance PhD prerequisite.",
+      "jel": [
+        "G"
+      ]
+    },
+    {
+      "id": "policy-writing",
+      "name": "Policy Writing",
+      "layer": "toolbelt",
+      "description": "Concise, hedged, formal. Very specific style.",
+      "soft": true
+    },
+    {
+      "id": "grant-writing",
+      "name": "Grant Writing",
+      "layer": "toolbelt",
+      "description": "NSF, ERC proposals. The academic survival skill.",
+      "soft": true
+    },
+    {
+      "id": "trade-theory",
+      "name": "Trade Theory",
+      "layer": "specialization",
+      "description": "Gravity models, trade flows, comparative advantage.",
+      "jel": [
+        "F"
+      ]
+    },
+    {
+      "id": "asset-pricing",
+      "name": "Asset Pricing",
+      "layer": "specialization",
+      "description": "CAPM, Fama-French, option pricing models.",
+      "jel": [
+        "G"
+      ]
+    },
+    {
+      "id": "labor-search",
+      "name": "Labor Search Models",
+      "layer": "specialization",
+      "description": "DMP model, matching functions, unemployment dynamics.",
+      "jel": [
+        "J"
+      ]
+    },
+    {
+      "id": "survey-methods",
+      "name": "Survey Methods",
+      "layer": "toolbelt",
+      "description": "Questionnaire design, sampling, weighting."
+    },
+    {
+      "id": "julia",
+      "name": "Julia",
+      "layer": "toolbelt",
+      "description": "Fast numerical computing. Growing in macro/structural."
+    }
+  ],
+  "careers": [
+    {
+      "id": "tech-economist",
+      "name": "Tech Economist",
+      "treeEmoji": "🌲",
+      "employers": [
+        "Amazon",
+        "Uber",
+        "Meta",
+        "Google",
+        "Netflix"
+      ],
+      "description": "Design experiments, measure causal impact, optimize marketplaces.",
+      "salaryUS": "$200k-$400k",
+      "salaryEU": "€80k-€150k",
+      "prerequisites": [
+        "micro",
+        "metrics"
+      ],
+      "required": [
+        "python",
+        "sql",
+        "ab-testing",
+        "causal-inference"
+      ],
+      "bonus": [
+        "causal-ml",
+        "machine-learning"
+      ],
+      "softSkills": []
+    },
+    {
+      "id": "central-banker",
+      "name": "Central Banker",
+      "treeEmoji": "🌳",
+      "employers": [
+        "Federal Reserve",
+        "ECB",
+        "Bank of England",
+        "IMF"
+      ],
+      "description": "Set monetary policy, model the economy, write influential reports.",
+      "salaryUS": "$100k-$180k",
+      "salaryEU": "€70k-€140k",
+      "prerequisites": [
+        "macro",
+        "time-series"
+      ],
+      "required": [
+        "matlab",
+        "dsge",
+        "monetary-theory"
+      ],
+      "bonus": [
+        "python",
+        "machine-learning"
+      ],
+      "softSkills": [
+        "policy-writing"
+      ]
+    },
+    {
+      "id": "academic-applied",
+      "name": "Academic (Applied)",
+      "treeEmoji": "🌴",
+      "employers": [
+        "Top 50 Universities",
+        "Research Institutes"
+      ],
+      "description": "Publish papers, train PhD students, shape the field.",
+      "salaryUS": "$120k-$250k",
+      "salaryEU": "€50k-€100k",
+      "prerequisites": [
+        "micro",
+        "metrics",
+        "real-analysis"
+      ],
+      "required": [
+        "stata",
+        "r",
+        "causal-inference"
+      ],
+      "bonus": [
+        "python",
+        "rct-design"
+      ],
+      "softSkills": [
+        "grant-writing"
+      ]
+    },
+    {
+      "id": "development-economist",
+      "name": "Development (JEL O)",
+      "treeEmoji": "🌿",
+      "jel": "O",
+      "employers": [
+        "World Bank",
+        "J-PAL",
+        "IPA",
+        "DFID"
+      ],
+      "description": "Run field experiments, evaluate interventions, reduce poverty.",
+      "salaryUS": "$80k-$150k",
+      "salaryEU": "€50k-€90k",
+      "prerequisites": [
+        "micro",
+        "metrics"
+      ],
+      "required": [
+        "stata",
+        "r",
+        "rct-design",
+        "causal-inference"
+      ],
+      "bonus": [
+        "python",
+        "survey-methods"
+      ],
+      "softSkills": [
+        "grant-writing"
+      ]
+    },
+    {
+      "id": "quant-finance",
+      "name": "Quant Finance (JEL G)",
+      "treeEmoji": "🌲",
+      "jel": "G",
+      "employers": [
+        "Citadel",
+        "Two Sigma",
+        "Goldman Sachs",
+        "Hedge Funds"
+      ],
+      "description": "Model risk, price derivatives, build trading strategies.",
+      "salaryUS": "$300k-$1M+",
+      "salaryEU": "€120k-€400k",
+      "prerequisites": [
+        "micro",
+        "linear-algebra",
+        "calc"
+      ],
+      "required": [
+        "python",
+        "stochastic-calc",
+        "time-series",
+        "asset-pricing"
+      ],
+      "bonus": [
+        "machine-learning",
+        "julia"
+      ],
+      "softSkills": []
+    },
+    {
+      "id": "labor-economist",
+      "name": "Labor (JEL J)",
+      "treeEmoji": "🌳",
+      "jel": "J",
+      "employers": [
+        "BLS",
+        "NBER",
+        "IZA",
+        "Policy Think Tanks"
+      ],
+      "description": "Study employment, wages, discrimination, education returns.",
+      "salaryUS": "$90k-$180k",
+      "salaryEU": "€60k-€120k",
+      "prerequisites": [
+        "micro",
+        "metrics"
+      ],
+      "required": [
+        "stata",
+        "panel-data",
+        "causal-inference",
+        "labor-search"
+      ],
+      "bonus": [
+        "r",
+        "survey-methods"
+      ],
+      "softSkills": [
+        "policy-writing"
+      ]
+    },
+    {
+      "id": "io-economist",
+      "name": "Industrial Org (JEL L)",
+      "treeEmoji": "🏭",
+      "jel": "L",
+      "employers": [
+        "DOJ Antitrust",
+        "FTC",
+        "Competition Authorities",
+        "Consulting"
+      ],
+      "description": "Analyze market power, mergers, regulation. Heavy computation.",
+      "salaryUS": "$150k-$350k",
+      "salaryEU": "€80k-€180k",
+      "prerequisites": [
+        "micro",
+        "metrics",
+        "game-theory"
+      ],
+      "required": [
+        "python",
+        "structural-io",
+        "matlab"
+      ],
+      "bonus": [
+        "julia",
+        "machine-learning"
+      ],
+      "softSkills": []
+    },
+    {
+      "id": "trade-economist",
+      "name": "Int'l Trade (JEL F)",
+      "treeEmoji": "🌍",
+      "jel": "F",
+      "employers": [
+        "WTO",
+        "OECD",
+        "Trade Ministries",
+        "Think Tanks"
+      ],
+      "description": "Model trade flows, analyze tariffs, study globalization.",
+      "salaryUS": "$100k-$200k",
+      "salaryEU": "€70k-€140k",
+      "prerequisites": [
+        "micro",
+        "macro",
+        "metrics"
+      ],
+      "required": [
+        "stata",
+        "r",
+        "trade-theory"
+      ],
+      "bonus": [
+        "python",
+        "panel-data"
+      ],
+      "softSkills": [
+        "policy-writing"
+      ]
+    }
+  ]
+}
