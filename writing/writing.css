@@ -83,7 +83,7 @@ header {
 .veiled-title { display: flex; gap: 8px; filter: blur(5px); opacity: .58; }
 .veiled-title i { display: block; width: 58px; height: 13px; border-radius: 999px; background: rgba(255,255,255,.85); }
 .veiled-title i:nth-child(2n) { width: 38px; }
-.veiled-whisper { color: #fff; font: 600 1.05rem 'Chakra Petch', sans-serif; letter-spacing: .04em; text-shadow: 2px 2px 0 rgba(0,0,0,.8), 0 0 12px rgba(255,255,255,.22); opacity: 0; }
+.veiled-whisper { color: #fff; font: 600 1.8em/1.2 'Chakra Petch', sans-serif; letter-spacing: .04em; text-shadow: 2px 2px 0 rgba(0,0,0,.8), 0 0 12px rgba(255,255,255,.22); opacity: 0; }
 .veiled-card:hover .veiled-title, .veiled-card:focus-visible .veiled-title { opacity: 0; filter: blur(9px); }
 .veiled-card:hover .veiled-whisper, .veiled-card:focus-visible .veiled-whisper { opacity: 1; letter-spacing: .08em; }
 
@@ -95,6 +95,10 @@ header {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+    .veiled-whisper {
+        font-size: 1.5em;
+    }
+
     .writing-grid {
         gap: 2em;
         padding: 15px;
