@@ -1,109 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="An interactive skill tree for economics students to explore career paths and required skills.">
-    <title>The Economist's Skill Tree: Rough Mapping</title>
+    <meta name="description" content="A rough, interactive mapping of the knowledge and craft behind different kinds of economist.">
+    <title>The Economist's Skill Tree — Ahmad Tahmid</title>
+    <link rel="icon" type="image/gif" href="../../assets/BetterClouds.gif">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
 </head>
-
 <body>
+    <div class="sky-wash" aria-hidden="true"></div>
     <div class="app-container">
-        <!-- Context Note (Top Left) -->
-        <div class="context-note">
-            The breakthrough success of <em>Clair Obscur: Expedition 33</em> by no-name French upstarts
-            (<em>they are super skilled and passionate of course</em>) inspired me to design a video game
-            skill tree which has since morphed into something else.
-        </div>
-
-        <!-- JEL Footnote (Top Right) -->
-        <div class="jel-footnote">
-            JEL = Journal of Economic Literature classification system
-        </div>
-
-        <!-- Header -->
-        <header class="header">
-            <a href="https://ahmadtahmid.github.io/" class="back-link">← Back to Home</a>
-            <h1 class="title">The Economist's Skill Tree: Rough Mapping</h1>
+        <header class="page-header">
+            <a href="../../" class="back-link">← Back to Home</a>
+            <div class="title-lockup">
+                <p class="overline">An evolving field map · v0.3</p>
+                <h1>The Economist's Skill Tree</h1>
+                <p class="subtitle">A rough map of the knowledge, tools and judgment that different economic practices draw upon.</p>
+            </div>
+            <details class="origin-note">
+                <summary>Why a forest?</summary>
+                <p>A video-game skill tree was the original provocation. The metaphor survived because careers share deep foundations while branching into different forms of practice. It is illustrative—not a curriculum, ranking or claim to completeness.</p>
+            </details>
         </header>
 
-        <!-- Controls Bar -->
-        <div class="controls-bar">
-            <div class="search-box">
-                <input type="text" id="skill-search" placeholder="🔍 Search skills..." autocomplete="off">
-            </div>
-            <div class="mode-toggle">
-                <button id="compare-btn" class="control-btn">
-                    <span>⚖️</span> Compare Careers
-                </button>
-            </div>
-        </div>
+        <main>
+            <section class="control-deck" aria-label="Map controls">
+                <label class="search-box">
+                    <span>Search the roots</span>
+                    <input type="search" id="skill-search" placeholder="econometrics, Python, policy…" autocomplete="off">
+                </label>
+                <button id="compare-btn" class="control-btn" type="button" aria-pressed="false">Compare two paths</button>
+                <p class="interaction-hint">Choose a crown to trace its roots. Choose it again to clear.</p>
+            </section>
 
-        <!-- Comparison Info (hidden by default) -->
-        <div class="comparison-info" id="comparison-info">
-            <span class="compare-hint">Select 2 careers to compare</span>
-            <div class="compare-badges" id="compare-badges"></div>
-            <button id="clear-compare" class="clear-btn">✕ Clear</button>
-        </div>
+            <div class="comparison-info" id="comparison-info">
+                <span class="compare-hint">Choose two career paths</span>
+                <div class="compare-badges" id="compare-badges"></div>
+                <button id="clear-compare" class="clear-btn" type="button">Clear</button>
+            </div>
 
-        <!-- Career Forest (Trees above ground) -->
-        <section class="forest-section">
-            <div class="forest" id="forest">
-                <!-- Trees populated dynamically -->
-            </div>
-        </section>
+            <section class="forest-section" aria-labelledby="forest-title">
+                <div class="section-label"><span>01</span><h2 id="forest-title">Practices above the horizon</h2></div>
+                <div class="forest" id="forest"></div>
+            </section>
 
-        <!-- Ground Line -->
-        <div class="ground-line">
-            <div class="ground-texture"></div>
-        </div>
+            <div class="horizon" aria-hidden="true">
+                <span>shared foundations · divergent practice</span>
+            </div>
 
-        <!-- Underground (Roots/Skills) -->
-        <section class="underground-section">
-            <div class="underground" id="underground">
-                <svg id="roots-svg"></svg>
-            </div>
-        </section>
+            <section class="underground-section" aria-labelledby="roots-title">
+                <div class="section-label roots-label"><span>02</span><h2 id="roots-title">Capabilities beneath the surface</h2></div>
+                <div class="layer-key" aria-label="Capability layers">
+                    <span><i class="layer-core-dot"></i>Foundations</span>
+                    <span><i class="layer-tool-dot"></i>Working toolbelt</span>
+                    <span><i class="layer-special-dot"></i>Specialisation</span>
+                </div>
+                <div class="underground" id="underground"><svg id="roots-svg" aria-label="Interactive map of economic capabilities"></svg></div>
+            </section>
 
-        <!-- Info Panel (Floating) - starts hidden -->
-        <aside class="info-panel hidden" id="info-panel">
-            <div class="panel-content"></div>
-        </aside>
+            <aside class="info-panel hidden" id="info-panel" aria-live="polite"></aside>
 
-        <!-- Legend -->
-        <footer class="legend">
-            <div class="legend-item">
-                <span class="legend-dot legend-prereq"></span>
-                <span>Prerequisites</span>
-            </div>
-            <div class="legend-item">
-                <span class="legend-dot legend-required"></span>
-                <span>Required</span>
-            </div>
-            <div class="legend-item">
-                <span class="legend-dot legend-soft"></span>
-                <span>Soft Skills</span>
-            </div>
-            <div class="legend-item legend-compare">
-                <span class="legend-dot legend-overlap"></span>
-                <span>Overlap (Compare)</span>
-            </div>
+            <section class="reading-note">
+                <span class="note-mark">*</span>
+                <div>
+                    <h2>Reading the map</h2>
+                    <p><strong>Prerequisite</strong> means a conceptual foundation. <strong>Working command</strong> means a capability that regularly produces the work. <strong>Adjacent advantage</strong> means useful leverage rather than a barrier to entry. Blank space does not mean useless.</p>
+                    <p>Real jobs are messier than diagrams. Institutions, seniority, teams and research questions change the mix; software changes faster than the underlying craft.</p>
+                </div>
+            </section>
+
+            <section class="references">
+                <p>Bearings: <a href="https://www.aeaweb.org/econlit/jelCodes.php?view=jel" target="_blank" rel="noreferrer">AEA JEL Classification</a> · <a href="https://www.federalreserve.gov/careers-economists.htm" target="_blank" rel="noreferrer">Federal Reserve economists</a> · <a href="https://www.worldbank.org/en/research" target="_blank" rel="noreferrer">World Bank research</a> · <a href="https://www.imf.org/en/About/Recruitment/working-at-the-imf/economist-program" target="_blank" rel="noreferrer">IMF Economist Program</a></p>
+            </section>
+        </main>
+
+        <footer>
+            <span>Ahmad Tahmid</span>
+            <span>A personal synthesis, built to be corrected.</span>
         </footer>
-
-        <!-- Tooltip -->
-        <div class="tooltip" id="tooltip"></div>
+        <div class="tooltip" id="tooltip" role="tooltip"></div>
     </div>
-
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="app.js"></script>
 </body>
-
 </html>
