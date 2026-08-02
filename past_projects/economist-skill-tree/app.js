@@ -1,574 +1,261 @@
-/**
- * The Economist's Skill Tree - V2
- * Search, Compare Mode, JEL Specializations
- */
+const categoryLabels = {
+    core: 'Foundations & formal reasoning',
+    toolbelt: 'Empirical craft & professional practice',
+    specialization: 'Domain methods & specialised models'
+};
 
-// State
-let data = null;
-let selectedCareer = null;
-let compareMode = false;
-let compareCareers = [];
-let svg, rootsGroup, linesGroup;
-let allSkillPositions = new Map();
-
-// Initialize
-document.addEventListener('DOMContentLoaded', init);
-
-async function init() {
-    try {
-        data = await loadData();
-        createForest();
-        setupSVG();
-        renderAllSkills();
-        setupTooltip();
-        setupSearch();
-        setupCompareMode();
-    } catch (error) {
-        console.error('Failed to initialize:', error);
+const careerFrames = {
+    'tech-economist': {
+        label: 'Marketplaces & technology',
+        question: 'What intervention changes behaviour—and can its effect be measured credibly at scale?',
+        outputs: 'Experiment designs, marketplace diagnostics, causal estimates, product recommendations',
+        note: 'The distinguishing craft is translating an economic mechanism into an operational decision under fast feedback.'
+    },
+    'central-banker': {
+        label: 'Macroeconomic policy',
+        question: 'What is happening in the economy, what might happen next, and how should policy respond under uncertainty?',
+        outputs: 'Forecasts, briefing notes, scenario models, policy analysis, speeches and reports',
+        note: 'Institutional judgment matters alongside models: revisions, communication and asymmetric policy risks are part of the work.'
+    },
+    'academic-applied': {
+        label: 'Applied research',
+        question: 'What can be learned that survives scrutiny, changes a literature, and travels beyond one dataset?',
+        outputs: 'Working papers, journal articles, seminars, replications, research supervision',
+        note: 'Originality and identification matter, but so do research design, transparent inference and the long discipline of revision.'
+    },
+    'development-economist': {
+        label: 'Development & evaluation',
+        question: 'Which constraints bind, which interventions work, for whom, and under what institutional conditions?',
+        outputs: 'Impact evaluations, field protocols, policy notes, survey instruments, country diagnostics',
+        note: 'Field knowledge and implementation fidelity are analytical inputs—not secondary details after the econometrics.'
+    },
+    'quant-finance': {
+        label: 'Markets & quantitative finance',
+        question: 'How should uncertainty, dependence and incentives be modelled when decisions are priced continuously?',
+        outputs: 'Pricing and risk models, forecasts, execution research, model validation, production code',
+        note: 'Mathematical fluency meets engineering discipline; robustness, latency and model risk can matter as much as fit.'
+    },
+    'labor-economist': {
+        label: 'Labour & human capital',
+        question: 'How do institutions, firms and policy shape work, wages, mobility and unequal opportunity?',
+        outputs: 'Administrative-data studies, programme evaluations, labour forecasts, policy briefs',
+        note: 'Measurement is unusually consequential: employment, participation, job quality and skill are not interchangeable outcomes.'
+    },
+    'io-economist': {
+        label: 'Competition & industrial organisation',
+        question: 'How do market structure and strategic behaviour shape prices, innovation and welfare?',
+        outputs: 'Merger analysis, demand estimates, market simulations, regulatory evidence, expert reports',
+        note: 'Institutional detail and credible counterfactuals sit beside game theory and computation.'
+    },
+    'trade-economist': {
+        label: 'Trade & international economics',
+        question: 'How do borders, firms and policy transmit shocks across places, industries and households?',
+        outputs: 'Trade models, tariff analysis, country studies, gravity estimates, policy scenarios',
+        note: 'The work connects aggregate adjustment to heterogeneous firms, workers and regions.'
     }
-}
+};
 
-// Data loading
-async function loadData() {
+let data;
+let focusId = 'all';
+let compareId = 'none';
+let activeCareer;
+
+document.addEventListener('DOMContentLoaded', async () => {
     const response = await fetch('skills.json');
-    if (!response.ok) throw new Error('Failed to load skills data');
-    return response.json();
+    data = await response.json();
+    activeCareer = data.careers[0].id;
+    document.querySelector('#career-count').textContent = String(data.careers.length).padStart(2, '0');
+    document.querySelector('#capability-count').textContent = String(data.skills.length).padStart(2, '0');
+    buildSelectors();
+    buildMatrix();
+    buildCareerTabs();
+    renderProfile(activeCareer);
+    bindControls();
+});
+
+function cleanCareerName(name) {
+    return name.replace(/\s*\(JEL [A-Z]\)/, '').replace('Academic (Applied)', 'Applied Academic').replace("Int'l", 'International');
 }
 
-// Create the forest of career trees
-function createForest() {
-    const forest = document.getElementById('forest');
+function skillLevel(career, skillId) {
+    if (career.prerequisites.includes(skillId)) return 3;
+    if (career.required.includes(skillId)) return 2;
+    if (career.bonus.includes(skillId) || (career.softSkills || []).includes(skillId)) return 1;
+    return 0;
+}
 
+function relationLabel(level) {
+    return ['', 'Adjacent advantage', 'Working command', 'Core foundation'][level];
+}
+
+function buildSelectors() {
+    const focus = document.querySelector('#career-focus');
+    const compare = document.querySelector('#career-compare');
+    data.careers.forEach(career => {
+        const name = cleanCareerName(career.name);
+        focus.add(new Option(name, career.id));
+        compare.add(new Option(name, career.id));
+    });
+}
+
+function buildMatrix() {
+    const head = document.querySelector('#matrix-head');
+    const body = document.querySelector('#matrix-body');
+    head.querySelectorAll('th:not(:first-child)').forEach(node => node.remove());
+    body.innerHTML = '';
+
+    data.careers.forEach(career => {
+        const th = document.createElement('th');
+        th.scope = 'col';
+        th.dataset.career = career.id;
+        th.textContent = cleanCareerName(career.name);
+        head.appendChild(th);
+    });
+
+    Object.keys(categoryLabels).forEach(category => {
+        const group = data.skills.filter(skill => skill.layer === category);
+        const categoryRow = document.createElement('tr');
+        categoryRow.className = 'category-row';
+        categoryRow.innerHTML = `<th scope="rowgroup">${categoryLabels[category]}</th><td colspan="${data.careers.length}"></td>`;
+        body.appendChild(categoryRow);
+
+        group.forEach(skill => {
+            const row = document.createElement('tr');
+            row.className = 'skill-row';
+            row.dataset.search = `${skill.name} ${skill.description} ${(skill.jel || []).join(' ')}`.toLowerCase();
+            const label = document.createElement('th');
+            label.scope = 'row';
+            label.textContent = skill.name;
+            row.appendChild(label);
+
+            data.careers.forEach(career => {
+                const level = skillLevel(career, skill.id);
+                const cell = document.createElement('td');
+                cell.dataset.career = career.id;
+                if (level) {
+                    const dot = document.createElement('i');
+                    dot.className = `matrix-dot level-${level}`;
+                    dot.tabIndex = 0;
+                    dot.setAttribute('aria-label', `${skill.name}: ${relationLabel(level)} for ${cleanCareerName(career.name)}`);
+                    dot.dataset.note = `${relationLabel(level)} · ${skill.description}`;
+                    cell.appendChild(dot);
+                }
+                row.appendChild(cell);
+            });
+            body.appendChild(row);
+        });
+    });
+    bindTooltips();
+}
+
+function buildCareerTabs() {
+    const tabs = document.querySelector('#career-tabs');
     data.careers.forEach((career, index) => {
-        const tree = document.createElement('div');
-        tree.className = 'tree';
-        tree.dataset.careerId = career.id;
-        tree.style.animationDelay = `${index * 0.1}s`;
-
-        tree.innerHTML = `
-            <div class="tree-canopy">${career.treeEmoji || '🌳'}</div>
-            <div class="tree-trunk"></div>
-            <div class="tree-label">${career.name}</div>
-        `;
-
-        tree.addEventListener('click', () => handleTreeClick(career.id));
-        forest.appendChild(tree);
-    });
-}
-
-// Handle tree click (normal or compare mode)
-function handleTreeClick(careerId) {
-    if (compareMode) {
-        toggleCompareCareer(careerId);
-    } else {
-        selectCareer(careerId);
-    }
-}
-
-// Setup SVG for roots
-function setupSVG() {
-    const container = document.getElementById('underground');
-    const rect = container.getBoundingClientRect();
-
-    svg = d3.select('#roots-svg')
-        .attr('width', rect.width || 1200)
-        .attr('height', rect.height || 400);
-
-    linesGroup = svg.append('g').attr('class', 'root-lines');
-    rootsGroup = svg.append('g').attr('class', 'root-nodes');
-
-    window.addEventListener('resize', debounce(() => {
-        const newRect = container.getBoundingClientRect();
-        svg.attr('width', newRect.width).attr('height', newRect.height);
-        allSkillPositions.clear();
-        renderAllSkills();
-        if (compareMode && compareCareers.length === 2) {
-            highlightComparison();
-        } else if (selectedCareer) {
-            highlightCareerPath(selectedCareer);
-        }
-    }, 250));
-}
-
-// Render ALL skills (always visible)
-function renderAllSkills() {
-    rootsGroup.selectAll('*').remove();
-
-    const container = document.getElementById('underground');
-    const rect = container.getBoundingClientRect();
-    const width = rect.width || 1200;
-    const height = rect.height || 400;
-
-    const layerDepths = {
-        core: { minY: height * 0.6, maxY: height * 0.85 },
-        toolbelt: { minY: height * 0.3, maxY: height * 0.55 },
-        specialization: { minY: height * 0.08, maxY: height * 0.28 }
-    };
-
-    const skillsByLayer = {
-        core: data.skills.filter(s => s.layer === 'core'),
-        toolbelt: data.skills.filter(s => s.layer === 'toolbelt'),
-        specialization: data.skills.filter(s => s.layer === 'specialization')
-    };
-
-    const positioned = [];
-
-    Object.entries(skillsByLayer).forEach(([layer, skills]) => {
-        const depth = layerDepths[layer];
-        const count = skills.length;
-        const spacing = (width - 120) / (count + 1);
-
-        skills.forEach((skill, i) => {
-            let pos = allSkillPositions.get(skill.id);
-            if (!pos) {
-                const x = 60 + spacing * (i + 1) + (Math.random() - 0.5) * 20;
-                const y = depth.minY + (depth.maxY - depth.minY) * (0.3 + Math.random() * 0.4);
-                pos = { x, y };
-                allSkillPositions.set(skill.id, pos);
-            }
-
-            positioned.push({ ...skill, x: pos.x, y: pos.y });
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.role = 'tab';
+        button.dataset.career = career.id;
+        button.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+        button.textContent = cleanCareerName(career.name);
+        button.addEventListener('click', () => {
+            activeCareer = career.id;
+            tabs.querySelectorAll('button').forEach(tab => tab.setAttribute('aria-selected', String(tab === button)));
+            renderProfile(career.id);
         });
-    });
-
-    const nodes = rootsGroup.selectAll('.root-node')
-        .data(positioned)
-        .enter()
-        .append('g')
-        .attr('class', d => `root-node layer-${d.layer}`)
-        .attr('data-skill-id', d => d.id)
-        .attr('transform', d => `translate(${d.x}, ${d.y})`);
-
-    nodes.append('circle')
-        .attr('r', d => d.layer === 'core' ? 26 : d.layer === 'toolbelt' ? 22 : 18);
-
-    nodes.append('text')
-        .attr('dy', d => (d.layer === 'core' ? 26 : d.layer === 'toolbelt' ? 22 : 18) + 14)
-        .text(d => d.name);
-
-    nodes.on('mouseenter', function (event, d) {
-        showTooltip(event, d);
-    })
-        .on('mousemove', function (event) {
-            moveTooltip(event);
-        })
-        .on('mouseleave', function () {
-            hideTooltip();
-        });
-}
-
-// --- SEARCH FUNCTIONALITY ---
-function setupSearch() {
-    const searchInput = document.getElementById('skill-search');
-    searchInput.addEventListener('input', debounce((e) => {
-        const query = e.target.value.toLowerCase().trim();
-        handleSearch(query);
-    }, 150));
-}
-
-function handleSearch(query) {
-    rootsGroup.selectAll('.root-node').each(function (d) {
-        const node = d3.select(this);
-        const matches = query && d.name.toLowerCase().includes(query);
-        node.classed('search-match', matches);
-        node.classed('dimmed', query && !matches);
-    });
-
-    // Clear lines when searching
-    if (query) {
-        linesGroup.selectAll('*').remove();
-    }
-}
-
-// --- COMPARE MODE ---
-function setupCompareMode() {
-    const compareBtn = document.getElementById('compare-btn');
-    const clearBtn = document.getElementById('clear-compare');
-    const comparisonInfo = document.getElementById('comparison-info');
-    const legendCompare = document.querySelector('.legend-compare');
-
-    compareBtn.addEventListener('click', () => {
-        compareMode = !compareMode;
-        compareBtn.classList.toggle('active', compareMode);
-        comparisonInfo.classList.toggle('active', compareMode);
-        legendCompare.classList.toggle('active', compareMode);
-
-        if (!compareMode) {
-            clearComparison();
-        } else {
-            // Clear single selection when entering compare mode
-            selectedCareer = null;
-            document.querySelectorAll('.tree').forEach(t => t.classList.remove('selected'));
-            clearHighlights();
-            hideInfoPanel();
-        }
-    });
-
-    clearBtn.addEventListener('click', clearComparison);
-}
-
-function toggleCompareCareer(careerId) {
-    const career = data.careers.find(c => c.id === careerId);
-    if (!career) return;
-
-    const index = compareCareers.findIndex(c => c.id === careerId);
-
-    if (index >= 0) {
-        // Remove from comparison
-        compareCareers.splice(index, 1);
-    } else if (compareCareers.length < 2) {
-        // Add to comparison
-        compareCareers.push(career);
-    } else {
-        // Replace oldest
-        compareCareers.shift();
-        compareCareers.push(career);
-    }
-
-    updateCompareUI();
-
-    if (compareCareers.length === 2) {
-        highlightComparison();
-        updateCompareInfoPanel();
-    } else if (compareCareers.length === 1) {
-        highlightCareerPath(compareCareers[0]);
-        updateInfoPanel(compareCareers[0]);
-    } else {
-        clearHighlights();
-        hideInfoPanel();
-    }
-}
-
-function updateCompareUI() {
-    const badges = document.getElementById('compare-badges');
-    const hint = document.querySelector('.compare-hint');
-
-    badges.innerHTML = compareCareers.map((c, i) =>
-        `<span class="compare-badge career-${i + 1}">${c.name}</span>`
-    ).join('');
-
-    hint.textContent = compareCareers.length < 2
-        ? `Select ${2 - compareCareers.length} more career${compareCareers.length === 1 ? '' : 's'}`
-        : 'Comparing:';
-
-    // Update tree visual selection
-    document.querySelectorAll('.tree').forEach(t => {
-        const isSelected = compareCareers.some(c => c.id === t.dataset.careerId);
-        t.classList.toggle('selected', isSelected);
+        tabs.appendChild(button);
     });
 }
 
-function highlightComparison() {
-    linesGroup.selectAll('*').remove();
-
-    const career1 = compareCareers[0];
-    const career2 = compareCareers[1];
-
-    const skills1 = new Set([
-        ...career1.prerequisites,
-        ...career1.required,
-        ...career1.bonus,
-        ...(career1.softSkills || [])
-    ]);
-
-    const skills2 = new Set([
-        ...career2.prerequisites,
-        ...career2.required,
-        ...career2.bonus,
-        ...(career2.softSkills || [])
-    ]);
-
-    const overlap = new Set([...skills1].filter(s => skills2.has(s)));
-    const only1 = new Set([...skills1].filter(s => !skills2.has(s)));
-    const only2 = new Set([...skills2].filter(s => !skills1.has(s)));
-
-    rootsGroup.selectAll('.root-node').each(function (d) {
-        const node = d3.select(this);
-        const skillId = d.id;
-
-        // Clear previous classes
-        node.classed('dimmed highlighted prereq required bonus soft overlap career-1-only career-2-only', false);
-
-        if (overlap.has(skillId)) {
-            node.classed('overlap', true);
-        } else if (only1.has(skillId)) {
-            node.classed('career-1-only', true);
-        } else if (only2.has(skillId)) {
-            node.classed('career-2-only', true);
-        } else {
-            node.classed('dimmed', true);
-        }
-    });
-
-    // Draw lines from both trees
-    drawCompareLines(career1, skills1, '#f472b6');
-    drawCompareLines(career2, skills2, '#38bdf8');
-}
-
-function drawCompareLines(career, skillIds, color) {
-    const container = document.getElementById('underground');
-    const containerRect = container.getBoundingClientRect();
-    const selectedTree = document.querySelector(`.tree[data-career-id="${career.id}"]`);
-    const treeRect = selectedTree.getBoundingClientRect();
-    const startX = treeRect.left + treeRect.width / 2 - containerRect.left;
-    const startY = 0;
-
-    skillIds.forEach(skillId => {
-        const pos = allSkillPositions.get(skillId);
-        if (pos) {
-            const midY = pos.y * 0.35;
-            const path = `M ${startX} ${startY} 
-                          Q ${startX + (pos.x - startX) * 0.25} ${midY},
-                            ${pos.x} ${pos.y}`;
-
-            linesGroup.append('path')
-                .attr('class', 'root-line')
-                .attr('d', path)
-                .style('stroke', color)
-                .style('stroke-opacity', 0.6)
-                .style('filter', `drop-shadow(0 0 4px ${color})`)
-                .style('opacity', 0)
-                .transition()
-                .duration(400)
-                .style('opacity', 1);
-        }
-    });
-}
-
-function updateCompareInfoPanel() {
-    const panel = document.getElementById('info-panel');
-    const career1 = compareCareers[0];
-    const career2 = compareCareers[1];
-
-    const skills1 = new Set([...career1.prerequisites, ...career1.required, ...career1.bonus]);
-    const skills2 = new Set([...career2.prerequisites, ...career2.required, ...career2.bonus]);
-    const overlap = [...skills1].filter(s => skills2.has(s)).map(id => getSkillName(id));
-    const only1 = [...skills1].filter(s => !skills2.has(s)).map(id => getSkillName(id));
-    const only2 = [...skills2].filter(s => !skills1.has(s)).map(id => getSkillName(id));
-
-    panel.innerHTML = `
-        <div class="panel-content">
-            <h2 class="panel-title">Comparing Careers</h2>
-            <p class="panel-employers" style="color: #f472b6">${career1.name}</p>
-            <p class="panel-employers" style="color: #38bdf8">vs ${career2.name}</p>
-            
-            <div class="panel-section">
-                <h3 class="panel-section-title">🟡 Overlapping Skills (${overlap.length})</h3>
-                <div class="skill-tags">
-                    ${overlap.map(s => `<span class="skill-tag" style="border-color:#fbbf24;color:#fbbf24">${s}</span>`).join('')}
-                </div>
-            </div>
-            
-            <div class="panel-section">
-                <h3 class="panel-section-title" style="color:#f472b6">${career1.name} Only (${only1.length})</h3>
-                <div class="skill-tags">
-                    ${only1.map(s => `<span class="skill-tag" style="border-color:#f472b6;color:#f472b6">${s}</span>`).join('')}
-                </div>
-            </div>
-            
-            <div class="panel-section">
-                <h3 class="panel-section-title" style="color:#38bdf8">${career2.name} Only (${only2.length})</h3>
-                <div class="skill-tags">
-                    ${only2.map(s => `<span class="skill-tag" style="border-color:#38bdf8;color:#38bdf8">${s}</span>`).join('')}
-                </div>
-            </div>
+function renderProfile(careerId) {
+    const career = data.careers.find(item => item.id === careerId);
+    const frame = careerFrames[careerId];
+    const relevant = data.skills
+        .map(skill => ({ skill, level: skillLevel(career, skill.id) }))
+        .filter(item => item.level >= 2)
+        .sort((a, b) => b.level - a.level);
+    const institutions = career.employers.join(' · ');
+    document.querySelector('#career-profile').innerHTML = `
+        <div>
+            <p class="profile-kicker">${frame.label}${career.jel ? ` · JEL ${career.jel}` : ''}</p>
+            <h3>${cleanCareerName(career.name)}</h3>
+            <p class="profile-description">${career.description} ${frame.note}</p>
+            <p class="profile-question">“${frame.question}”</p>
         </div>
-    `;
+        <div class="profile-side">
+            <div class="profile-block"><h4>Characteristic outputs</h4><p>${frame.outputs}</p></div>
+            <div class="profile-block"><h4>Illustrative settings</h4><p>${institutions}</p></div>
+            <div class="profile-block"><h4>Concentrated capabilities</h4><div class="capability-list">${relevant.map(item => `<span>${item.skill.name}</span>`).join('')}</div></div>
+        </div>`;
 }
 
-function clearComparison() {
-    compareCareers = [];
-    updateCompareUI();
-    clearHighlights();
-    hideInfoPanel();
-}
-
-// --- SINGLE CAREER SELECTION ---
-function selectCareer(careerId) {
-    const career = data.careers.find(c => c.id === careerId);
-    if (!career) return;
-
-    // Clear search
-    document.getElementById('skill-search').value = '';
-    handleSearch('');
-
-    if (selectedCareer && selectedCareer.id === careerId) {
-        selectedCareer = null;
-        document.querySelectorAll('.tree').forEach(t => t.classList.remove('selected'));
-        clearHighlights();
-        hideInfoPanel();
-        return;
-    }
-
-    selectedCareer = career;
-
-    document.querySelectorAll('.tree').forEach(t => {
-        t.classList.toggle('selected', t.dataset.careerId === careerId);
+function bindControls() {
+    const search = document.querySelector('#skill-search');
+    const focus = document.querySelector('#career-focus');
+    const compare = document.querySelector('#career-compare');
+    search.addEventListener('input', applyView);
+    focus.addEventListener('change', () => {
+        focusId = focus.value;
+        if (focusId !== 'all' && compareId === focusId) {
+            compare.value = 'none';
+            compareId = 'none';
+        }
+        applyView();
     });
-
-    updateInfoPanel(career);
-    highlightCareerPath(career);
+    compare.addEventListener('change', () => { compareId = compare.value; applyView(); });
+    document.querySelector('#reset-map').addEventListener('click', () => {
+        search.value = '';
+        focus.value = 'all';
+        compare.value = 'none';
+        focusId = 'all';
+        compareId = 'none';
+        applyView();
+    });
 }
 
-function highlightCareerPath(career) {
-    linesGroup.selectAll('*').remove();
+function applyView() {
+    const query = document.querySelector('#skill-search').value.trim().toLowerCase();
+    let visibleRows = 0;
+    document.querySelectorAll('.skill-row').forEach(row => {
+        const visible = !query || row.dataset.search.includes(query);
+        row.hidden = !visible;
+        if (visible) visibleRows += 1;
+    });
+    document.querySelector('#empty-state').hidden = visibleRows !== 0;
 
-    const prereqIds = new Set(career.prerequisites);
-    // Merge bonus into required
-    const requiredIds = new Set([...career.required, ...career.bonus]);
-    const softIds = new Set(career.softSkills || []);
-    const allRelevant = new Set([...prereqIds, ...requiredIds, ...softIds]);
-
-    const container = document.getElementById('underground');
-    const containerRect = container.getBoundingClientRect();
-    const selectedTree = document.querySelector(`.tree[data-career-id="${career.id}"]`);
-    const treeRect = selectedTree.getBoundingClientRect();
-    const startX = treeRect.left + treeRect.width / 2 - containerRect.left;
-    const startY = 0;
-
-    rootsGroup.selectAll('.root-node').each(function (d) {
-        const node = d3.select(this);
-        const skillId = d.id;
-        const isRelevant = allRelevant.has(skillId);
-
-        let type = 'dimmed';
-        if (prereqIds.has(skillId)) type = 'prereq';
-        else if (requiredIds.has(skillId)) type = 'required';
-        else if (softIds.has(skillId)) type = 'soft';
-
-        node.classed('dimmed highlighted prereq required bonus soft search-match overlap career-1-only career-2-only', false);
-        node.classed('dimmed', !isRelevant);
-        node.classed('highlighted', isRelevant);
-        node.classed(type, type !== 'dimmed');
-
-        if (isRelevant) {
-            const pos = allSkillPositions.get(skillId);
-            if (pos) {
-                const midY = pos.y * 0.35;
-                const path = `M ${startX} ${startY} 
-                              Q ${startX + (pos.x - startX) * 0.25} ${midY},
-                                ${pos.x} ${pos.y}`;
-
-                linesGroup.append('path')
-                    .attr('class', `root-line ${type}`)
-                    .attr('d', path)
-                    .style('opacity', 0)
-                    .transition()
-                    .duration(400)
-                    .style('opacity', 1);
-            }
+    document.querySelectorAll('#capability-matrix [data-career]').forEach(cell => {
+        cell.classList.remove('focus-dim', 'focus-col', 'compare-col');
+        if (focusId !== 'all') {
+            if (cell.dataset.career === focusId) cell.classList.add('focus-col');
+            else if (cell.dataset.career === compareId) cell.classList.add('compare-col');
+            else cell.classList.add('focus-dim');
         }
     });
+
+    document.querySelectorAll('.category-row').forEach(categoryRow => {
+        let next = categoryRow.nextElementSibling;
+        let hasVisibleSkill = false;
+        while (next && !next.classList.contains('category-row')) {
+            if (!next.hidden) hasVisibleSkill = true;
+            next = next.nextElementSibling;
+        }
+        categoryRow.hidden = !hasVisibleSkill;
+    });
 }
 
-function clearHighlights() {
-    linesGroup.selectAll('*').remove();
-
-    rootsGroup.selectAll('.root-node')
-        .classed('dimmed highlighted prereq required bonus soft search-match overlap career-1-only career-2-only', false);
-}
-
-function hideInfoPanel() {
-    const panel = document.getElementById('info-panel');
-    panel.classList.add('hidden');
-}
-
-function showInfoPanel() {
-    const panel = document.getElementById('info-panel');
-    panel.classList.remove('hidden');
-}
-
-function updateInfoPanel(career) {
-    const panel = document.getElementById('info-panel');
-
-    const prereqSkills = career.prerequisites.map(id => getSkillName(id));
-    // Merge bonus into required
-    const requiredSkills = [...career.required, ...career.bonus].map(id => getSkillName(id));
-    const softSkills = (career.softSkills || []).map(id => getSkillName(id));
-
-    panel.innerHTML = `
-        <div class="panel-content">
-            <h2 class="panel-title">${career.name}</h2>
-            ${career.jel ? `<span class="skill-tag" style="margin-bottom:8px;display:inline-block">JEL Code: ${career.jel}</span>` : ''}
-            <p class="panel-employers">${career.employers.join(' • ')}</p>
-            <p class="panel-description">${career.description}</p>
-            
-            <div class="panel-salary">
-                <span class="salary-tag us">🇺🇸 ${career.salaryUS}</span>
-                <span class="salary-tag eu">🇪🇺 ${career.salaryEU}</span>
-            </div>
-            
-            <div class="panel-section">
-                <h3 class="panel-section-title">Prerequisites</h3>
-                <div class="skill-tags">
-                    ${prereqSkills.map(s => `<span class="skill-tag prerequisite">${s}</span>`).join('')}
-                </div>
-            </div>
-            
-            <div class="panel-section">
-                <h3 class="panel-section-title">Required Skills</h3>
-                <div class="skill-tags">
-                    ${requiredSkills.map(s => `<span class="skill-tag required">${s}</span>`).join('')}
-                </div>
-            </div>
-            
-            ${softSkills.length ? `
-            <div class="panel-section">
-                <h3 class="panel-section-title">Soft Skills</h3>
-                <div class="skill-tags">
-                    ${softSkills.map(s => `<span class="skill-tag soft">${s}</span>`).join('')}
-                </div>
-            </div>
-            ` : ''}
-        </div>
-    `;
-    showInfoPanel();
-}
-
-function getSkillName(id) {
-    const skill = data.skills.find(s => s.id === id);
-    return skill ? skill.name : id;
-}
-
-// Tooltip
-let tooltip;
-
-function setupTooltip() {
-    tooltip = document.getElementById('tooltip');
-}
-
-function showTooltip(event, d) {
-    const layerName = data.layers[d.layer]?.name || d.layer;
-
-    tooltip.innerHTML = `
-        <div class="tooltip-title">${d.name}</div>
-        <div class="tooltip-layer">${layerName}</div>
-        <div class="tooltip-description">${d.description}</div>
-    `;
-    tooltip.classList.add('visible');
-    moveTooltip(event);
-}
-
-function moveTooltip(event) {
-    const x = event.pageX + 15;
-    const y = event.pageY + 15;
-    tooltip.style.left = `${x}px`;
-    tooltip.style.top = `${y}px`;
-}
-
-function hideTooltip() {
-    tooltip.classList.remove('visible');
-}
-
-// Utility
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
+function bindTooltips() {
+    const tooltip = document.querySelector('#cell-note');
+    document.querySelectorAll('.matrix-dot').forEach(dot => {
+        const show = event => {
+            tooltip.textContent = dot.dataset.note;
+            tooltip.hidden = false;
+            const x = event.clientX || dot.getBoundingClientRect().left;
+            const y = event.clientY || dot.getBoundingClientRect().bottom;
+            tooltip.style.left = `${Math.min(x + 14, window.innerWidth - 280)}px`;
+            tooltip.style.top = `${Math.min(y + 14, window.innerHeight - 100)}px`;
         };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
+        dot.addEventListener('mouseenter', show);
+        dot.addEventListener('mousemove', show);
+        dot.addEventListener('focus', show);
+        ['mouseleave', 'blur'].forEach(type => dot.addEventListener(type, () => { tooltip.hidden = true; }));
+    });
 }
