@@ -1,29 +1,42 @@
-# The Economist's Practice Map
+# The Economist's Skill Tree 🎮📊
 
-An evolving, interactive map of how theory, empirical methods, computation, domain knowledge and professional judgment combine across economic practice.
+An interactive, gamified skill tree visualization for economics students to explore career paths and required skills.
 
-## Design premise
+## Features
 
-The project deliberately avoids presenting economics as a single ladder or curriculum. Its unit of analysis is the relationship between a capability and a setting of practice. A method may be foundational in one role, part of working command in another, and merely advantageous elsewhere.
+- **5 Career Paths**: Tech Economist, Central Banker, Academic, Development Economist, Quant/Finance
+- **25+ Skills**: Mapped across Core, Toolbelt, and Specialization layers
+- **Interactive Visualization**: D3.js force-directed graph with:
+  - Click career → path highlights
+  - Hover for skill descriptions
+  - Drag nodes to rearrange
+  - Zoom and pan
 
-The interface supports:
+## Usage
 
-- searching across capabilities and descriptions;
-- focusing on one practice;
-- comparing two practices;
-- inspecting characteristic questions, outputs and institutional settings; and
-- reviewing the assumptions and limitations of the map.
+1. Open `index.html` in a browser (requires a local server for JSON loading)
+2. Click any career button to see its required skill path
+3. Hover over nodes to see descriptions
+4. Drag nodes to explore the graph
 
-## Data model
+## Running Locally
 
-`skills.json` contains three capability layers and eight illustrative practices. Relationships are encoded as:
+```bash
+# Option 1: npx
+npx serve .
 
-- `prerequisites`: core foundations;
-- `required`: working command;
-- `bonus` and `softSkills`: adjacent advantage.
+# Option 2: Python
+python -m http.server 8000
+```
 
-These categories describe relevance, not difficulty, prestige or a universal order of study.
+Then open http://localhost:5000 (or 8000 for Python)
 
-## Status
+## Data Structure
 
-This is a provisional personal synthesis, designed to be corrected as the underlying research and practitioner input improve. Institutional references on the page provide bearings; they do not independently validate every cell in the matrix.
+Edit `skills.json` to add:
+- New skills (with layer, description)
+- New career paths (with prerequisites, required, bonus, useless skills)
+
+## License
+
+MIT

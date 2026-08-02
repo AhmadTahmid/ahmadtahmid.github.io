@@ -1,147 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="An evolving map of the capabilities, methods and forms of judgment used across economic practice.">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="The Economist's Practice Map">
-    <meta property="og:description" content="Theory, evidence, computation and judgment across eight settings of economic practice.">
-    <meta property="og:url" content="https://ahmadtahmid.github.io/past_projects/economist-skill-tree/">
-    <meta property="og:image" content="https://ahmadtahmid.github.io/past_projects/economist-skill-tree/og.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The Economist's Practice Map">
-    <meta name="twitter:description" content="Theory, evidence, computation and judgment across eight settings of economic practice.">
-    <meta name="twitter:image" content="https://ahmadtahmid.github.io/past_projects/economist-skill-tree/og.png">
-    <title>The Economist's Practice Map — Ahmad Tahmid</title>
+    <meta name="description"
+        content="An interactive skill tree for economics students to explore career paths and required skills.">
+    <title>The Economist's Skill Tree: Rough Mapping</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-    <header class="site-header">
-        <a class="home-link" href="../../">Ahmad Tahmid <span>/ projects</span></a>
-        <div class="edition">Working map · 2026</div>
-    </header>
+    <div class="app-container">
+        <!-- Context Note (Top Left) -->
+        <div class="context-note">
+            The breakthrough success of <em>Clair Obscur: Expedition 33</em> by no-name French upstarts
+            (<em>they are super skilled and passionate of course</em>) inspired me to design a video game
+            skill tree which has since morphed into something else.
+        </div>
 
-    <main>
-        <section class="hero" aria-labelledby="page-title">
-            <p class="eyebrow">A field guide to economic practice</p>
-            <h1 id="page-title">The Economist’s<br><em>Practice Map</em></h1>
-            <div class="hero-deck">
-                <p class="lede">Economics is not one craft. It is a family of practices joined by theory, evidence, computation and institutional judgment.</p>
-                <p class="intro">This map asks a practical question: <strong>what must an economist be able to do, and how does the answer change by setting?</strong> It is an evolving synthesis—not a canonical curriculum or hiring rubric.</p>
+        <!-- JEL Footnote (Top Right) -->
+        <div class="jel-footnote">
+            JEL = Journal of Economic Literature classification system
+        </div>
+
+        <!-- Header -->
+        <header class="header">
+            <a href="https://ahmadtahmid.github.io/" class="back-link">← Back to Home</a>
+            <h1 class="title">The Economist's Skill Tree: Rough Mapping</h1>
+        </header>
+
+        <!-- Controls Bar -->
+        <div class="controls-bar">
+            <div class="search-box">
+                <input type="text" id="skill-search" placeholder="🔍 Search skills..." autocomplete="off">
             </div>
-            <div class="hero-meta" aria-label="Map summary">
-                <div><strong id="career-count">08</strong><span>practices</span></div>
-                <div><strong id="capability-count">30</strong><span>capabilities</span></div>
-                <div><strong>03</strong><span>levels of relevance</span></div>
-                <div><strong>v0.3</strong><span>provisional release</span></div>
+            <div class="mode-toggle">
+                <button id="compare-btn" class="control-btn">
+                    <span>⚖️</span> Compare Careers
+                </button>
             </div>
-        </section>
+        </div>
 
-        <section class="thesis" aria-labelledby="thesis-title">
-            <p class="section-index">01 / Premise</p>
-            <div>
-                <h2 id="thesis-title">A profession organised around outputs, not software.</h2>
-                <div class="prose-columns">
-                    <p>The useful unit is not “knows Python” or “studied microeconomics.” It is the capacity to frame a tractable question, choose an identification or modelling strategy, work with imperfect evidence, and communicate a conclusion whose limitations are understood.</p>
-                    <p>Tools therefore appear here in relation to a practice. The same econometric method carries different weight in a central bank forecast, a field experiment, a merger simulation or a marketplace intervention.</p>
-                </div>
-            </div>
-        </section>
+        <!-- Comparison Info (hidden by default) -->
+        <div class="comparison-info" id="comparison-info">
+            <span class="compare-hint">Select 2 careers to compare</span>
+            <div class="compare-badges" id="compare-badges"></div>
+            <button id="clear-compare" class="clear-btn">✕ Clear</button>
+        </div>
 
-        <section class="map-section" aria-labelledby="matrix-title">
-            <div class="section-heading">
-                <p class="section-index">02 / Capability matrix</p>
-                <div>
-                    <h2 id="matrix-title">Where capabilities accumulate—and where they diverge.</h2>
-                    <p>Select a practice to trace its column, or compare two to expose common ground.</p>
-                </div>
-            </div>
-
-            <div class="workbench">
-                <div class="controls">
-                    <label class="search-control">
-                        <span>Find a capability</span>
-                        <input id="skill-search" type="search" placeholder="e.g. causal inference" autocomplete="off">
-                    </label>
-                    <label>
-                        <span>Focus</span>
-                        <select id="career-focus"><option value="all">All practices</option></select>
-                    </label>
-                    <label>
-                        <span>Compare with</span>
-                        <select id="career-compare"><option value="none">None</option></select>
-                    </label>
-                    <button id="reset-map" type="button">Reset view</button>
-                </div>
-
-                <div class="legend" aria-label="Relevance legend">
-                    <span><i class="mark core"></i> Core</span>
-                    <span><i class="mark working"></i> Working command</span>
-                    <span><i class="mark adjacent"></i> Adjacent advantage</span>
-                    <span class="legend-note">Blank does not mean irrelevant; it means non-distinctive in this rough map.</span>
-                </div>
-
-                <div class="matrix-frame">
-                    <table id="capability-matrix">
-                        <thead><tr id="matrix-head"><th scope="col">Capability</th></tr></thead>
-                        <tbody id="matrix-body"></tbody>
-                    </table>
-                    <div id="empty-state" hidden>No capabilities match that search.</div>
-                </div>
+        <!-- Career Forest (Trees above ground) -->
+        <section class="forest-section">
+            <div class="forest" id="forest">
+                <!-- Trees populated dynamically -->
             </div>
         </section>
 
-        <section class="lens-section" aria-labelledby="lens-title">
-            <div class="section-heading">
-                <p class="section-index">03 / Practice lenses</p>
-                <div>
-                    <h2 id="lens-title">Eight settings, eight definitions of useful judgment.</h2>
-                    <p>Choose a practice to inspect its characteristic questions, outputs and capability profile.</p>
-                </div>
-            </div>
-            <div id="career-tabs" class="career-tabs" role="tablist" aria-label="Economic practices"></div>
-            <article id="career-profile" class="career-profile" aria-live="polite"></article>
-        </section>
+        <!-- Ground Line -->
+        <div class="ground-line">
+            <div class="ground-texture"></div>
+        </div>
 
-        <section class="method-section" aria-labelledby="method-title">
-            <p class="section-index">04 / Method & limits</p>
-            <div>
-                <h2 id="method-title">How to read a deliberately incomplete map.</h2>
-                <div class="method-grid">
-                    <div><span>01</span><h3>Relational, not ordinal</h3><p>The marks describe relevance to a practice, not difficulty, prestige or a universal sequence of study.</p></div>
-                    <div><span>02</span><h3>Roles vary internally</h3><p>A research economist and a country economist may share an institution while doing materially different work.</p></div>
-                    <div><span>03</span><h3>Tools are perishable</h3><p>Software changes faster than the underlying capacities: modelling, identification, computation and clear argument.</p></div>
-                    <div><span>04</span><h3>Contestable by design</h3><p>Every cell is a claim that can be revised. The map should improve through disagreement and domain experience.</p></div>
-                </div>
+        <!-- Underground (Roots/Skills) -->
+        <section class="underground-section">
+            <div class="underground" id="underground">
+                <svg id="roots-svg"></svg>
             </div>
         </section>
 
-        <section class="sources" aria-labelledby="sources-title">
-            <p class="section-index">05 / Bearings</p>
-            <div>
-                <h2 id="sources-title">Institutional reference points</h2>
-                <p class="sources-intro">The taxonomy begins with the JEL system and is cross-checked against how major institutions describe economic research and professional work. These links are bearings, not endorsements of every mapping choice.</p>
-                <ol>
-                    <li><a href="https://www.aeaweb.org/econlit/jelCodes.php?view=jel" target="_blank" rel="noreferrer"><span>American Economic Association</span>JEL Classification System</a></li>
-                    <li><a href="https://www.bls.gov/ooh/life-physical-and-social-science/economists.htm" target="_blank" rel="noreferrer"><span>U.S. Bureau of Labor Statistics</span>Economists: Occupational Outlook</a></li>
-                    <li><a href="https://www.federalreserve.gov/careers-economists.htm" target="_blank" rel="noreferrer"><span>Federal Reserve Board</span>Careers for Economists</a></li>
-                    <li><a href="https://www.worldbank.org/en/research" target="_blank" rel="noreferrer"><span>World Bank</span>Development Economics Research</a></li>
-                    <li><a href="https://www.imf.org/en/About/Recruitment/working-at-the-imf/economist-program" target="_blank" rel="noreferrer"><span>International Monetary Fund</span>Economist Program</a></li>
-                </ol>
+        <!-- Info Panel (Floating) - starts hidden -->
+        <aside class="info-panel hidden" id="info-panel">
+            <div class="panel-content"></div>
+        </aside>
+
+        <!-- Legend -->
+        <footer class="legend">
+            <div class="legend-item">
+                <span class="legend-dot legend-prereq"></span>
+                <span>Prerequisites</span>
             </div>
-        </section>
-    </main>
+            <div class="legend-item">
+                <span class="legend-dot legend-required"></span>
+                <span>Required</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-dot legend-soft"></span>
+                <span>Soft Skills</span>
+            </div>
+            <div class="legend-item legend-compare">
+                <span class="legend-dot legend-overlap"></span>
+                <span>Overlap (Compare)</span>
+            </div>
+        </footer>
 
-    <footer>
-        <p>An evolving personal synthesis by Ahmad Tahmid.</p>
-        <p>Built to be corrected.</p>
-    </footer>
+        <!-- Tooltip -->
+        <div class="tooltip" id="tooltip"></div>
+    </div>
 
-    <div id="cell-note" class="cell-note" role="tooltip" hidden></div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="app.js"></script>
 </body>
+
 </html>
