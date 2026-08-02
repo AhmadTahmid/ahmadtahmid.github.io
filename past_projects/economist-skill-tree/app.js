@@ -11,6 +11,17 @@ let compareCareers = [];
 let svg, rootsGroup, linesGroup;
 let allSkillPositions = new Map();
 
+const careerFrames = {
+    'tech-economist': { practice: 'Marketplace and product economics', question: 'What intervention changes behaviour, and can its effect be measured credibly at scale?', outputs: 'Experiment designs, marketplace diagnostics, causal estimates and product recommendations' },
+    'central-banker': { practice: 'Macroeconomic policy', question: 'What is happening in the economy, what might happen next, and how should policy respond under uncertainty?', outputs: 'Forecasts, briefing notes, scenario models and policy analysis' },
+    'academic-applied': { practice: 'Applied research', question: 'What can be learned that survives scrutiny, changes a literature and travels beyond one dataset?', outputs: 'Working papers, journal articles, seminars and replications' },
+    'development-economist': { practice: 'Development and evaluation', question: 'Which constraints bind, which interventions work, for whom, and under what institutional conditions?', outputs: 'Impact evaluations, field protocols, survey instruments and policy notes' },
+    'quant-finance': { practice: 'Markets and quantitative finance', question: 'How should uncertainty, dependence and incentives be modelled when decisions are priced continuously?', outputs: 'Pricing and risk models, forecasts, model validation and production code' },
+    'labor-economist': { practice: 'Labour and human capital', question: 'How do institutions, firms and policy shape work, wages, mobility and unequal opportunity?', outputs: 'Administrative-data studies, programme evaluations, forecasts and policy briefs' },
+    'io-economist': { practice: 'Competition and industrial organisation', question: 'How do market structure and strategic behaviour shape prices, innovation and welfare?', outputs: 'Merger analysis, demand estimates, market simulations and regulatory evidence' },
+    'trade-economist': { practice: 'Trade and international economics', question: 'How do borders, firms and policy transmit shocks across places, industries and households?', outputs: 'Trade models, tariff analysis, gravity estimates and policy scenarios' }
+};
+
 // Initialize
 document.addEventListener('DOMContentLoaded', init);
 
@@ -44,14 +55,24 @@ function createForest() {
         tree.className = 'tree';
         tree.dataset.careerId = career.id;
         tree.style.animationDelay = `${index * 0.1}s`;
+        tree.tabIndex = 0;
+        tree.setAttribute('role', 'button');
+        tree.setAttribute('aria-label', `Trace the ${career.name} path`);
 
         tree.innerHTML = `
-            <div class="tree-canopy">${career.treeEmoji || '🌳'}</div>
+            <div class="tree-crown" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
             <div class="tree-trunk"></div>
             <div class="tree-label">${career.name}</div>
+            <div class="tree-code">${career.jel ? `JEL ${career.jel}` : careerFrames[career.id].practice}</div>
         `;
 
         tree.addEventListener('click', () => handleTreeClick(career.id));
+        tree.addEventListener('keydown', event => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                handleTreeClick(career.id);
+            }
+        });
         forest.appendChild(tree);
     });
 }
@@ -121,8 +142,9 @@ function renderAllSkills() {
         skills.forEach((skill, i) => {
             let pos = allSkillPositions.get(skill.id);
             if (!pos) {
-                const x = 60 + spacing * (i + 1) + (Math.random() - 0.5) * 20;
-                const y = depth.minY + (depth.maxY - depth.minY) * (0.3 + Math.random() * 0.4);
+                const x = 60 + spacing * (i + 1);
+                const stagger = count > 2 ? (i % 3) / 2 : 0.5;
+                const y = depth.minY + (depth.maxY - depth.minY) * (0.22 + stagger * 0.56);
                 pos = { x, y };
                 allSkillPositions.set(skill.id, pos);
             }
@@ -169,7 +191,8 @@ function setupSearch() {
 function handleSearch(query) {
     rootsGroup.selectAll('.root-node').each(function (d) {
         const node = d3.select(this);
-        const matches = query && d.name.toLowerCase().includes(query);
+        const searchable = `${d.name} ${d.description} ${(d.jel || []).join(' ')}`.toLowerCase();
+        const matches = query && searchable.includes(query);
         node.classed('search-match', matches);
         node.classed('dimmed', query && !matches);
     });
@@ -185,13 +208,12 @@ function setupCompareMode() {
     const compareBtn = document.getElementById('compare-btn');
     const clearBtn = document.getElementById('clear-compare');
     const comparisonInfo = document.getElementById('comparison-info');
-    const legendCompare = document.querySelector('.legend-compare');
 
     compareBtn.addEventListener('click', () => {
         compareMode = !compareMode;
         compareBtn.classList.toggle('active', compareMode);
+        compareBtn.setAttribute('aria-pressed', String(compareMode));
         comparisonInfo.classList.toggle('active', compareMode);
-        legendCompare.classList.toggle('active', compareMode);
 
         if (!compareMode) {
             clearComparison();
@@ -348,12 +370,13 @@ function updateCompareInfoPanel() {
 
     panel.innerHTML = `
         <div class="panel-content">
+            <p class="panel-kicker">Shared roots and divergence</p>
             <h2 class="panel-title">Comparing Careers</h2>
             <p class="panel-employers" style="color: #f472b6">${career1.name}</p>
             <p class="panel-employers" style="color: #38bdf8">vs ${career2.name}</p>
             
             <div class="panel-section">
-                <h3 class="panel-section-title">🟡 Overlapping Skills (${overlap.length})</h3>
+                <h3 class="panel-section-title">Overlapping capabilities (${overlap.length})</h3>
                 <div class="skill-tags">
                     ${overlap.map(s => `<span class="skill-tag" style="border-color:#fbbf24;color:#fbbf24">${s}</span>`).join('')}
                 </div>
@@ -414,10 +437,10 @@ function highlightCareerPath(career) {
     linesGroup.selectAll('*').remove();
 
     const prereqIds = new Set(career.prerequisites);
-    // Merge bonus into required
-    const requiredIds = new Set([...career.required, ...career.bonus]);
+    const requiredIds = new Set(career.required);
+    const bonusIds = new Set(career.bonus);
     const softIds = new Set(career.softSkills || []);
-    const allRelevant = new Set([...prereqIds, ...requiredIds, ...softIds]);
+    const allRelevant = new Set([...prereqIds, ...requiredIds, ...bonusIds, ...softIds]);
 
     const container = document.getElementById('underground');
     const containerRect = container.getBoundingClientRect();
@@ -434,6 +457,7 @@ function highlightCareerPath(career) {
         let type = 'dimmed';
         if (prereqIds.has(skillId)) type = 'prereq';
         else if (requiredIds.has(skillId)) type = 'required';
+        else if (bonusIds.has(skillId)) type = 'bonus';
         else if (softIds.has(skillId)) type = 'soft';
 
         node.classed('dimmed highlighted prereq required bonus soft search-match overlap career-1-only career-2-only', false);
@@ -480,48 +504,35 @@ function showInfoPanel() {
 
 function updateInfoPanel(career) {
     const panel = document.getElementById('info-panel');
-
+    const frame = careerFrames[career.id];
     const prereqSkills = career.prerequisites.map(id => getSkillName(id));
-    // Merge bonus into required
-    const requiredSkills = [...career.required, ...career.bonus].map(id => getSkillName(id));
+    const requiredSkills = career.required.map(id => getSkillName(id));
+    const adjacentSkills = career.bonus.map(id => getSkillName(id));
     const softSkills = (career.softSkills || []).map(id => getSkillName(id));
 
     panel.innerHTML = `
         <div class="panel-content">
+            <p class="panel-kicker">${frame.practice}${career.jel ? ` / JEL ${career.jel}` : ''}</p>
             <h2 class="panel-title">${career.name}</h2>
-            ${career.jel ? `<span class="skill-tag" style="margin-bottom:8px;display:inline-block">JEL Code: ${career.jel}</span>` : ''}
-            <p class="panel-employers">${career.employers.join(' • ')}</p>
+            <p class="panel-employers">${career.employers.join(' / ')}</p>
             <p class="panel-description">${career.description}</p>
-            
-            <div class="panel-salary">
-                <span class="salary-tag us">🇺🇸 ${career.salaryUS}</span>
-                <span class="salary-tag eu">🇪🇺 ${career.salaryEU}</span>
+            <p class="panel-question">${frame.question}</p>
+
+            <div class="panel-section">
+                <h3 class="panel-section-title">Characteristic outputs</h3>
+                <p class="panel-description">${frame.outputs}</p>
             </div>
-            
             <div class="panel-section">
                 <h3 class="panel-section-title">Prerequisites</h3>
-                <div class="skill-tags">
-                    ${prereqSkills.map(s => `<span class="skill-tag prerequisite">${s}</span>`).join('')}
-                </div>
+                <div class="skill-tags">${prereqSkills.map(s => `<span class="skill-tag prerequisite">${s}</span>`).join('')}</div>
             </div>
-            
             <div class="panel-section">
-                <h3 class="panel-section-title">Required Skills</h3>
-                <div class="skill-tags">
-                    ${requiredSkills.map(s => `<span class="skill-tag required">${s}</span>`).join('')}
-                </div>
+                <h3 class="panel-section-title">Working command</h3>
+                <div class="skill-tags">${requiredSkills.map(s => `<span class="skill-tag required">${s}</span>`).join('')}</div>
             </div>
-            
-            ${softSkills.length ? `
-            <div class="panel-section">
-                <h3 class="panel-section-title">Soft Skills</h3>
-                <div class="skill-tags">
-                    ${softSkills.map(s => `<span class="skill-tag soft">${s}</span>`).join('')}
-                </div>
-            </div>
-            ` : ''}
-        </div>
-    `;
+            ${adjacentSkills.length ? `<div class="panel-section"><h3 class="panel-section-title">Adjacent advantage</h3><div class="skill-tags">${adjacentSkills.map(s => `<span class="skill-tag bonus">${s}</span>`).join('')}</div></div>` : ''}
+            ${softSkills.length ? `<div class="panel-section"><h3 class="panel-section-title">Professional craft</h3><div class="skill-tags">${softSkills.map(s => `<span class="skill-tag soft">${s}</span>`).join('')}</div></div>` : ''}
+        </div>`;
     showInfoPanel();
 }
 
@@ -538,7 +549,7 @@ function setupTooltip() {
 }
 
 function showTooltip(event, d) {
-    const layerName = data.layers[d.layer]?.name || d.layer;
+    const layerName = data.layers[d.layer] ? data.layers[d.layer].name : d.layer;
 
     tooltip.innerHTML = `
         <div class="tooltip-title">${d.name}</div>
