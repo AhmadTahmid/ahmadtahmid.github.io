@@ -75,13 +75,15 @@ header {
 }
 
 /* Veiled entries */
-.veiled-card { min-width: min(340px, 80vw); padding: 16px 24px; border-radius: 10px; text-align: center; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.025); }
+.writing-grid a.veiled-card,
+.writing-grid a.veiled-card:link,
+.writing-grid a.veiled-card:visited { min-width: min(340px, 80vw); padding: 16px 24px; border-radius: 10px; color: #fff; text-align: center; text-decoration: none; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.025); }
 .veiled-card .card-content { position: relative; min-height: 34px; display: grid; place-items: center; }
 .veiled-title, .veiled-whisper { grid-area: 1 / 1; transition: opacity .35s ease, filter .35s ease, letter-spacing .35s ease; }
 .veiled-title { display: flex; gap: 8px; filter: blur(5px); opacity: .58; }
 .veiled-title i { display: block; width: 58px; height: 13px; border-radius: 999px; background: rgba(255,255,255,.85); }
 .veiled-title i:nth-child(2n) { width: 38px; }
-.veiled-whisper { color: rgba(255,255,255,.78); font: italic .9rem 'Space Mono', monospace; letter-spacing: .03em; opacity: 0; }
+.veiled-whisper { color: #fff; font: 600 1.05rem 'Chakra Petch', sans-serif; letter-spacing: .04em; text-shadow: 2px 2px 0 rgba(0,0,0,.8), 0 0 12px rgba(255,255,255,.22); opacity: 0; }
 .veiled-card:hover .veiled-title, .veiled-card:focus-visible .veiled-title { opacity: 0; filter: blur(9px); }
 .veiled-card:hover .veiled-whisper, .veiled-card:focus-visible .veiled-whisper { opacity: 1; letter-spacing: .08em; }
 
